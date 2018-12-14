@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>My Blog</title>
+  
+  <subtitle>Posts</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-12-13T12:18:23.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Dong Bing</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CFX在Ubuntu平台配置</title>
+    <link href="http://yoursite.com/2018/12/13/CFX%E5%9C%A8Ubuntu%E5%B9%B3%E5%8F%B0%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2018/12/13/CFX在Ubuntu平台配置/</id>
+    <published>2018-12-13T12:18:42.937Z</published>
+    <updated>2018-12-13T12:18:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>cfx5pre和cfx5post一般工作正常，但是cfx5solve在进行计算时会出现错误，具体提示为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A ANSYS CFX &apos;double-ifort&apos; Partitioner executable is required for this run, but none is available.</span><br></pre></td></tr></table></figure></p><h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>ansys本身并没有对ubuntu系统进行适配，原因可能是函数库不匹配。解决方法为在运行cfx5solve之前更改一下环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export LD_DEBUG=unused</span><br></pre></td></tr></table></figure></p><p>然后再运行cfx5solve即可。需要注意的是cfx5pre和cfx5post不能有此环境变量，否则会出错。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h1&gt;&lt;p&gt;cfx5pre和cfx5post一般工作正常，但是cfx5solve在进行计算时会出现错误，具体提示为:&lt;br&gt;&lt;figur
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>解决x0vncserver输入小于号变成大于号</title>
+    <link href="http://yoursite.com/2018/12/02/%E8%A7%A3%E5%86%B3x0vncserver%E8%BE%93%E5%85%A5%E5%B0%8F%E4%BA%8E%E5%8F%B7%E5%8F%98%E6%88%90%E5%A4%A7%E4%BA%8E%E5%8F%B7/"/>
+    <id>http://yoursite.com/2018/12/02/解决x0vncserver输入小于号变成大于号/</id>
+    <published>2018-12-02T08:57:52.287Z</published>
+    <updated>2018-12-02T08:57:52.279Z</updated>
+    
+    <content type="html"><![CDATA[<p>在启动命令中增加<code>-RemapKeys=&quot;0x3c-&gt;0x2c&quot;</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x0vncserver -display :0 -passwordfile .vnc/passwd -RemapKeys=&quot;0x3c-&gt;0x2c&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在启动命令中增加&lt;code&gt;-RemapKeys=&amp;quot;0x3c-&amp;gt;0x2c&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span cl
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux制作GIF图片</title>
+    <link href="http://yoursite.com/2018/12/02/Linux%E5%88%B6%E4%BD%9CGIF%E5%9B%BE%E7%89%87/"/>
+    <id>http://yoursite.com/2018/12/02/Linux制作GIF图片/</id>
+    <published>2018-12-02T08:22:37.403Z</published>
+    <updated>2018-12-02T08:22:37.395Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="从JPG图片序列创建GIF动图"><a href="#从JPG图片序列创建GIF动图" class="headerlink" title="从JPG图片序列创建GIF动图"></a>从JPG图片序列创建GIF动图</h2><p>先将所有 JPG 图片放到同一文件夹，再在终端中执行如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -delay 120 -loop 0 *.jpg linux.gif</span><br></pre></td></tr></table></figure></p><p>优化图片大小：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert linux.gif -fuzz 30% -layers Optimize output.gif</span><br></pre></td></tr></table></figure></p><p>附：批量裁剪图片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image, ImageDraw, ImageFont</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">files = os.listdir(&quot;.&quot;)</span><br><span class="line"></span><br><span class="line">t = 0</span><br><span class="line">reg = (420,1,867,720)</span><br><span class="line"></span><br><span class="line">for f in files:</span><br><span class="line">    if &quot;jpg&quot; in f:</span><br><span class="line">        print(f)</span><br><span class="line">        im = Image.open(f)</span><br><span class="line">        im_size = im.size</span><br><span class="line">        region = im.crop(reg)</span><br><span class="line">        draw = ImageDraw.Draw(region)</span><br><span class="line">        ttfront = ImageFont.truetype(&quot;wqy-microhei.ttc&quot;,30)</span><br><span class="line">        t_str = &quot;%.3E&quot; % t</span><br><span class="line">        draw.text((25,633),&quot;t=&quot;+t_str+&quot;s&quot;,fill=(0,0,0),font=ttfront)</span><br><span class="line">        region.save(&quot;./crop/&quot;+f)</span><br><span class="line">        t += 0.000015</span><br></pre></td></tr></table></figure></p><p><a href="http://202.120.16.44:9000/api/file/getAttach?fileId=5b8ffddf8dac7a4e55000010" target="_blank" rel="noopener">crop.py</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;从JPG图片序列创建GIF动图&quot;&gt;&lt;a href=&quot;#从JPG图片序列创建GIF动图&quot; class=&quot;headerlink&quot; title=&quot;从JPG图片序列创建GIF动图&quot;&gt;&lt;/a&gt;从JPG图片序列创建GIF动图&lt;/h2&gt;&lt;p&gt;先将所有 JPG 图片放到同一文件夹
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
