@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python文件与路径操作 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="python文件与路径操作python中对文件、文件夹（文件操作函数）的操作需要涉及到os模块和shutil模块。
+python 目录操作
+得到当前工作目录，即当前Python脚本工作的目录路径：os.getcwd()
+返回指定目录下的所有文件和目录名：os.listdir()
+函数用来删除一个文件">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="python文件与路径操作"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">python文件与路径操作</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="python文件与路径操作"><a href="#python文件与路径操作" class="headerlink" title="python文件与路径操作"></a>python文件与路径操作</h1><p>python中对文件、文件夹（文件操作函数）的操作需要涉及到<strong>os</strong>模块和<strong>shutil</strong>模块。</p>
+<h2 id="python-目录操作"><a href="#python-目录操作" class="headerlink" title="python 目录操作"></a>python 目录操作</h2><ul>
+<li>得到当前工作目录，即当前Python脚本工作的目录路径：<code>os.getcwd()</code></li>
+<li>返回指定目录下的所有文件和目录名：<code>os.listdir()</code></li>
+<li>函数用来删除一个文件：<code>os.remove()</code></li>
+<li>删除多个目录：<code>os.removedirs(r&quot;c:\python&quot;)</code></li>
+<li>检验给出的路径是否是一个文件：<code>os.path.isfile()</code></li>
+<li>检验给出的路径是否是一个目录：<code>os.path.isdir()</code></li>
+<li>转换目录：<code>os.chdir(&quot;path&quot;)</code></li>
+<li>判断是否是绝对路径：<code>os.path.isabs()</code></li>
+<li>检验给出的路径是否真地存：<code>os.path.exists()</code></li>
+<li>返回一个路径的目录名和文件名：<code>os.path.split()</code></li>
+<li>分离扩展名：<code>os.path.splitext()</code></li>
+<li>获取路径名：<code>os.path.dirname()</code></li>
+<li>获取文件名：<code>os.path.basename()</code></li>
+<li>运行shell命令：<code>os.system()</code></li>
+<li>读取和设置环境变量：<code>os.getenv()</code>与<code>os.putenv()</code></li>
+<li>给出当前平台使用的行终止符：<code>os.linesep</code>；Windows使用’\r\n’，Linux使用’\n’而Mac使用’\r’</li>
+<li>指示你正在使用的平台：<code>os.name</code>；对于Windows，它是’nt’，而对于Linux/Unix用户，它是’posix’</li>
+<li>重命名：<code>os.rename(old, new)</code></li>
+<li>创建多级目录：<code>os.makedirs(r&quot;c:\python\test&quot;)</code></li>
+<li>创建单个目录：<code>os.mkdir(&quot;test&quot;)</code></li>
+<li>获取文件属性：<code>os.stat(file)</code></li>
+<li>修改文件权限与时间戳：<code>os.chmod(file)</code></li>
+<li>终止当前进程：<code>os.exit()</code></li>
+<li>获取文件大小：<code>os.path.getsize(filename)</code></li>
+<li>创建目录：<code>os.mkdir(&quot;file&quot;)</code></li>
+<li>复制文件：<code>shutil.copyfile(&quot;oldfile&quot;,&quot;newfile&quot;)</code>；oldfile和newfile都只能是文件</li>
+<li>复制文件或目录：<code>shutil.copy(&quot;oldfile&quot;,&quot;newfile&quot;)</code>；oldfile只能是文件夹，newfile可以是文件，也可以是目标目录</li>
+<li>复制文件夹：<code>shutil.copytree(&quot;olddir&quot;,&quot;newdir&quot;)</code>；olddir和newdir都只能是目录，且newdir必须不存在</li>
+<li>移动文件（目录）：<code>shutil.move(&quot;oldpos&quot;,&quot;newpos&quot;)</code></li>
+<li>删除目录：<code>shutil.rmtree(&quot;dir&quot;)</code>；空目录、有内容的目录都可以删</li>
+</ul>
+<h2 id="python-文件操作："><a href="#python-文件操作：" class="headerlink" title="python 文件操作："></a>python 文件操作：</h2><ul>
+<li>创建空文件<br><code>os.mknod(&quot;test.txt&quot;)</code></li>
+<li>直接打开一个文件，如果文件不存在则创建文件<br><code>fp = open(&quot;test.txt&quot;,w)</code></li>
+</ul>
+<blockquote>
+<p>关于open 模式：<br>w     以写方式打开<br>a     以追加模式打开 (从 EOF 开始, 必要时创建新文件)<br>r+     以读写模式打开<br>w+     以读写模式打开 (参见 w )<br>a+     以读写模式打开 (参见 a )<br>rb     以二进制读模式打开<br>wb     以二进制写模式打开 (参见 w )<br>ab     以二进制追加模式打开 (参见 a )<br>rb+    以二进制读写模式打开 (参见 r+ )<br>wb+    以二进制读写模式打开 (参见 w+ )<br>ab+    以二进制读写模式打开 (参见 a+ )</p>
+</blockquote>
+<ul>
+<li>size为读取的长度，以byte为单位<br><code>fp.read([size])</code></li>
+<li>读一行，如果定义了size，有可能返回的只是一行的一部分<br><code>fp.readline([size])</code></li>
+<li>把文件每一行作为一个list的一个成员，并返回这个list。其实它的内部是通过循环调用readline()来实现的。如果提供size参数，size是表示读取内容的总长，也就是说可能只读到文件的一部分。<br><code>fp.readlines([size])</code></li>
+<li>把str写到文件中，write()并不会在str后加上一个换行符<br><code>fp.write(str)</code></li>
+<li>把seq的内容全部写到文件中(多行一次性写入)。这个函数也只是忠实地写入，不会在每行后面加上任何东西。<br><code>fp.writelines(seq)</code></li>
+<li>关闭文件<br><code>fp.close()</code></li>
+<li>把缓冲区的内容写入硬盘<br><code>fp.flush()</code></li>
+<li>返回一个长整型的“文件标签”<br><code>fp.fileno()</code></li>
+<li>文件是否是一个终端设备文件（unix系统中的）<br><code>fp.isatty()</code></li>
+<li>返回文件操作标记的当前位置，以文件的开头为原点<br><code>fp.tell()</code></li>
+<li>返回下一行，并将文件操作标记位移到下一行。把一个file用于for … in file这样的语句时，就是调用next()函数来实现遍历的。<br><code>fp.next()</code></li>
+<li>将文件打操作标记移到offset的位置。这个offset一般是相对于文件的开头来计算的，一般为正数。但如果提供了whence参数就不一定了，whence可以为0表示从头开始计算，1表示以当前位置为原点计算。2表示以文件末尾为原点进行计算。需要注意，如果文件以a或a+的模式打开，每次进行写操作时，文件操作标记会自动返回到文件末尾。<br><code>fp.seek(offset[,whence])</code></li>
+<li>把文件裁成规定的大小，默认的是裁到当前文件操作标记的位置。如果size比文件的大小还要大，依据系统的不同可能是不改变文件，也可能是用0把文件补到相应的大小，也可能是以一些随机的内容加上去。<br><code>fp.truncate([size])</code></li>
+</ul>
+<p>相关例子<br> 1 将文件夹下所有图片名称加上’_fc’<br>python代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line">import re</span><br><span class="line">import os</span><br><span class="line">import time</span><br><span class="line">#str.split(string)分割字符串</span><br><span class="line">#&apos;连接符&apos;.join(list) 将列表组成字符串</span><br><span class="line">def change_name(path):</span><br><span class="line">    global i</span><br><span class="line">    if not os.path.isdir(path) and not os.path.isfile(path):</span><br><span class="line">        return False</span><br><span class="line">    if os.path.isfile(path):</span><br><span class="line">        file_path = os.path.split(path) #分割出目录与文件</span><br><span class="line">        lists = file_path[1].split(&apos;.&apos;) #分割出文件与文件扩展名</span><br><span class="line">        file_ext = lists[-1] #取出后缀名(列表切片操作)</span><br><span class="line">        img_ext = [&apos;bmp&apos;,&apos;jpeg&apos;,&apos;gif&apos;,&apos;psd&apos;,&apos;png&apos;,&apos;jpg&apos;]</span><br><span class="line">        if file_ext in img_ext:</span><br><span class="line">            os.rename(path,file_path[0]+&apos;/&apos;+lists[0]+&apos;_fc.&apos;+file_ext)</span><br><span class="line">            i+=1 #注意这里的i是一个陷阱</span><br><span class="line">        #或者</span><br><span class="line">        #img_ext = &apos;bmp|jpeg|gif|psd|png|jpg&apos;</span><br><span class="line">        #if file_ext in img_ext:</span><br><span class="line">        #    print(&apos;ok---&apos;+file_ext)</span><br><span class="line">    elif os.path.isdir(path):</span><br><span class="line">        for x in os.listdir(path):</span><br><span class="line">            change_name(os.path.join(path,x)) #os.path.join()在路径处理上很有用</span><br><span class="line"></span><br><span class="line">img_dir = &apos;D:\\xx\\xx\\images&apos;</span><br><span class="line">img_dir = img_dir.replace(&apos;\\&apos;,&apos;/&apos;)</span><br><span class="line">start = time.time()</span><br><span class="line">i = 0</span><br><span class="line">change_name(img_dir)</span><br><span class="line">c = time.time() - start</span><br><span class="line">print(&apos;程序运行耗时:%0.2f&apos;%(c))</span><br><span class="line">print(&apos;总共处理了 %s 张图片&apos;%(i))</span><br></pre></td></tr></table></figure>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/Python/Python求解稀疏矩阵/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Python/使用xlrd操作Excel/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>配置rsync服务器远程同步 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="配置rsync服务器远程同步1. 配置rsyncd.conf1sudo vim /etc/rsyncd.conf
+内容如下：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="配置rsync服务器远程同步"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">配置rsync服务器远程同步</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="配置rsync服务器远程同步"><a href="#配置rsync服务器远程同步" class="headerlink" title="配置rsync服务器远程同步"></a>配置rsync服务器远程同步</h1><h2 id="1-配置rsyncd-conf"><a href="#1-配置rsyncd-conf" class="headerlink" title="1. 配置rsyncd.conf"></a>1. 配置rsyncd.conf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/rsyncd.conf</span><br></pre></td></tr></table></figure>
+<p>内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"># sample rsyncd.conf configuration file</span><br><span class="line"></span><br><span class="line"># GLOBAL OPTIONS</span><br><span class="line"></span><br><span class="line">#motd file=/etc/motd</span><br><span class="line">log file=/var/log/rsyncd</span><br><span class="line"># for pid file, do not use /var/run/rsync.pid if</span><br><span class="line"># you are going to run rsync out of the init.d script.</span><br><span class="line"># The init.d script does its own pid file handling,</span><br><span class="line"># so omit the &quot;pid file&quot; line completely in that case.</span><br><span class="line"># pid file=/var/run/rsyncd.pid</span><br><span class="line">#syslog facility=daemon</span><br><span class="line">#socket options=</span><br><span class="line"></span><br><span class="line"># MODULE OPTIONS</span><br><span class="line"></span><br><span class="line">[ftp]</span><br><span class="line"></span><br><span class="line">        comment = public archive</span><br><span class="line">        path = /var/www/pub</span><br><span class="line">        use chroot = yes</span><br><span class="line">#       max connections=10</span><br><span class="line">        lock file = /var/lock/rsyncd</span><br><span class="line"># the default for read only is yes...</span><br><span class="line">        read only = yes</span><br><span class="line">        list = yes</span><br><span class="line">        uid = nobody</span><br><span class="line">        gid = nogroup</span><br><span class="line">#       exclude = </span><br><span class="line">#       exclude from = </span><br><span class="line">#       include =</span><br><span class="line">#       include from =</span><br><span class="line">#       auth users = </span><br><span class="line">#       secrets file = /etc/rsyncd.secrets</span><br><span class="line">        strict modes = yes</span><br><span class="line">#       hosts allow =</span><br><span class="line">#       hosts deny =</span><br><span class="line">        ignore errors = no</span><br><span class="line">        ignore nonreadable = yes</span><br><span class="line">        transfer logging = no</span><br><span class="line">#       log format = %t: host %h (%a) %o %f (%l bytes). Total %b bytes.</span><br><span class="line">        timeout = 600</span><br><span class="line">        refuse options = checksum dry-run</span><br><span class="line">        dont compress = *.gz *.tgz *.zip *.z *.rpm *.deb *.iso *.bz2 *.tbz</span><br><span class="line">[leanote_backup]</span><br><span class="line">        comment = public archieve</span><br><span class="line">        path = /backup/leanote_backup</span><br><span class="line">        use chroot = no</span><br><span class="line">        lock file = /var/lock/rsyncd</span><br><span class="line">        read only = no</span><br><span class="line">        list = yes</span><br><span class="line">        uid = dongbing</span><br><span class="line">        gid = dongbing</span><br><span class="line">        auth users = dongbing</span><br><span class="line">        secrets file = /etc/rsyncd.secrets</span><br></pre></td></tr></table></figure>
+<p>创建<code>/etc/rsyncd.secrets</code>密码文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dongbing:dong71643612</span><br></pre></td></tr></table></figure>
+<p><strong>权限改为600</strong></p>
+<h2 id="2-启动rsync服务"><a href="#2-启动rsync服务" class="headerlink" title="2. 启动rsync服务"></a>2. 启动rsync服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start rsync</span><br></pre></td></tr></table></figure>
+<h2 id="3-同步文件"><a href="#3-同步文件" class="headerlink" title="3. 同步文件"></a>3. 同步文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avzu --progress leanote_backup/ rsync://dongbing@58.196.168.231/leanote_backup</span><br></pre></td></tr></table></figure>
+<p>注意：<code>sudo rsync -avzu --progress /data /mnt/USB</code>会在<code>/mnt/USB</code>目录下面建立data文件夹；而<code>sudo rsync -avzu --progress /data/ /mnt/USB</code>会将<code>data</code>目录下面的内容复制到<code>/mnt/USB</code>下面。</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/Markdown & HTML/HTML中插入数学公式/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Linux/配置Samba/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

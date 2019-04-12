@@ -1,0 +1,457 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ISMEAR和SIGMA | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="ISMEAR和SIGMAISMEAER这一项,目前需要记住的是:不同的值对应的是不同的展宽方法:
+
+对于半导体和绝缘体体系,ISMEAR的值取绝对不能大于0, 一般用0,
+对所有体系,更加精确的时候用-5,
+对于所有K点数目小于3的计算,不能用ISMEAR = -5。为什么呢?因为会出错。
+K 点少">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="ISMEAR和SIGMA"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">ISMEAR和SIGMA</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="ISMEAR和SIGMA"><a href="#ISMEAR和SIGMA" class="headerlink" title="ISMEAR和SIGMA"></a>ISMEAR和SIGMA</h1><h2 id="ISMEAER这一项-目前需要记住的是-不同的值对应的是不同的展宽方法"><a href="#ISMEAER这一项-目前需要记住的是-不同的值对应的是不同的展宽方法" class="headerlink" title="ISMEAER这一项,目前需要记住的是:不同的值对应的是不同的展宽方法:"></a>ISMEAER这一项,目前需要记住的是:不同的值对应的是不同的展宽方法:</h2><blockquote>
+<ul>
+<li>对于半导体和绝缘体体系,ISMEAR的值取绝对不能大于0, 一般用0,</li>
+<li>对所有体系,更加精确的时候用-5,</li>
+<li>对于所有K点数目小于3的计算,不能用ISMEAR = -5。为什么呢?因为会出错。</li>
+<li>K 点少,还是半导体或者绝缘体,那么只能用 ISMEAR = 0。</li>
+<li>对于金属来说,ISMEAR的取值一般为1。</li>
+<li>保守地说,ISMEAR = 0(Gaussian Smearing) 可以满足大部分的体系(金属,导体,半导体,分子),</li>
+<li>在DOS能带计算中,使用ISMEAR= -5 用于获取精确的信息。 </li>
+</ul>
+</blockquote>
+<h2 id="SIGMA的取值和ISMEAR息息相关"><a href="#SIGMA的取值和ISMEAR息息相关" class="headerlink" title="SIGMA的取值和ISMEAR息息相关:"></a>SIGMA的取值和ISMEAR息息相关:</h2><blockquote>
+<ul>
+<li>如果用了ISMEAR = -5 (对于所有体系),SIGMA的值可以忽略,也可以不管(VASP会自动略过)</li>
+<li>对于金属: ISMEAR =1 或者0,非金属: ISMEAR= 0 的时候,一般取0.10 或者采用默认值 0.20 即可。不过很多人都不放心,为了保险想测试一番。标准是: SIGMA 的取值要保证OUTCAR 中的 entropy T*S 这一项,平均到每个原子上,要小于 1-2 meV。检查的时候可以用这个命令: grep ‘entropy T’  OUTCAR   (这里有两个单引号,不要输入的时候漏掉) 得出的能量除以体系中原子的数目,然后再和 0.001 eV 比较,如果小于,SIGMA取值OK,如果大于,再换个测试。</li>
+<li>对于分子,原子体系(也就是你把分子或者原子放到一个box里面),必须要用很小的值,这里我们用的0.01。</li>
+</ul>
+</blockquote>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/流体力学/湍流模型/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Linux/CentOS/CentOS 自动登陆和自动联网/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

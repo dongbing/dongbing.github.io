@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>安装配置OpenVPN服务器 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="安装配置OpenVPN服务器1. 安装openvpn和easy-rsa2. 配置openvpn和easy-rsa首先修改/usr/share/easy-rsa/2.0/vars
+123456export KEY_COUNTRY=&amp;quot;CN&amp;quot;export KEY_PROVINCE=&amp;q">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="安装配置OpenVPN服务器"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">安装配置OpenVPN服务器</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="安装配置OpenVPN服务器"><a href="#安装配置OpenVPN服务器" class="headerlink" title="安装配置OpenVPN服务器"></a>安装配置OpenVPN服务器</h1><h2 id="1-安装openvpn和easy-rsa"><a href="#1-安装openvpn和easy-rsa" class="headerlink" title="1. 安装openvpn和easy-rsa"></a>1. 安装openvpn和easy-rsa</h2><h2 id="2-配置openvpn和easy-rsa"><a href="#2-配置openvpn和easy-rsa" class="headerlink" title="2. 配置openvpn和easy-rsa"></a>2. 配置openvpn和easy-rsa</h2><p>首先修改<code>/usr/share/easy-rsa/2.0/vars</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export KEY_COUNTRY=&quot;CN&quot;</span><br><span class="line">export KEY_PROVINCE=&quot;SH&quot;</span><br><span class="line">export KEY_CITY=&quot;Shanghai&quot;</span><br><span class="line">export KEY_ORG=&quot;SJTU&quot;</span><br><span class="line">export KEY_EMAIL=&quot;dongbing@sjtu.edu.cn&quot;</span><br><span class="line">export KEY_OU=&quot;SJTU&quot;</span><br></pre></td></tr></table></figure>
+<p>初始化环境变量：<code>source vars</code><br>之后按照如下步骤进行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 清除keys目录下所有与证书相关的文件</span><br><span class="line"># 下面步骤生成的证书和密钥都在/usr/share/easy-rsa/2.0/keys目录里</span><br><span class="line">./clean-all</span><br><span class="line"> </span><br><span class="line"># 生成根证书ca.crt和根密钥ca.key（一路按回车即可）</span><br><span class="line">./build-ca</span><br><span class="line"> </span><br><span class="line"># 为服务端生成证书和密钥（一路按回车，直到提示需要输入y/n时，输入y再按回车，一共两次）</span><br><span class="line">./build-key-server server</span><br><span class="line"> </span><br><span class="line"># 每一个登陆的VPN客户端需要有一个证书，每个证书在同一时刻只能供一个客户端连接，下面建立2份</span><br><span class="line"># 为客户端生成证书和密钥（一路按回车，直到提示需要输入y/n时，输入y再按回车，一共两次）</span><br><span class="line">./build-key client1</span><br><span class="line">./build-key client2</span><br><span class="line"> </span><br><span class="line"># 创建迪菲·赫尔曼密钥，会生成dh2048.pem文件（生成过程比较慢，在此期间不要去中断它）</span><br><span class="line">./build-dh</span><br><span class="line"> </span><br><span class="line"># 生成ta.key文件（防DDos攻击、UDP淹没等恶意攻击）</span><br><span class="line">openvpn --genkey --secret keys/ta.key</span><br><span class="line"># 在openvpn的配置目录下新建一个keys目录</span><br><span class="line">mkdir /etc/openvpn/keys</span><br><span class="line"> </span><br><span class="line"># 将需要用到的openvpn证书和密钥复制一份到刚创建好的keys目录中</span><br><span class="line">cp /usr/share/easy-rsa/2.0/keys/&#123;ca.crt,server.&#123;crt,key&#125;,dh2048.pem,ta.key&#125; /etc/openvpn/keys/</span><br><span class="line"> </span><br><span class="line"># 复制一份服务器端配置文件模板server.conf到/etc/openvpn/</span><br><span class="line">cp /usr/share/doc/openvpn/sample/sample-config-files/server.conf /etc/openvpn/</span><br><span class="line"># 编辑server.conf</span><br><span class="line">vim /etc/openvpn/server.conf</span><br></pre></td></tr></table></figure>
+<p>OpenVPN的服务器端配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">port 1194</span><br><span class="line"># 改成tcp，默认使用udp，如果使用HTTP Proxy，必须使用tcp协议</span><br><span class="line">proto tcp</span><br><span class="line">dev tun</span><br><span class="line"># 路径前面加keys，全路径为/etc/openvpn/keys/ca.crt</span><br><span class="line">ca keys/ca.crt</span><br><span class="line">cert keys/server.crt</span><br><span class="line">key keys/server.key  # This file should be kept secret</span><br><span class="line">dh keys/dh2048.pem</span><br><span class="line"># 默认虚拟局域网网段，不要和实际的局域网冲突即可</span><br><span class="line">server 10.8.0.0 255.255.255.0</span><br><span class="line">ifconfig-pool-persist ipp.txt</span><br><span class="line"># 10.0.0.0/8是我这台VPN服务器所在的内网的网段，读者应该根据自身实际情况进行修改</span><br><span class="line">push &quot;route 10.0.0.0 255.0.0.0&quot;</span><br><span class="line"># 转发所有流量</span><br><span class="line">push &quot;redirect-gateway def1 bypass-dhcp&quot;</span><br><span class="line"># 可以让客户端之间相互访问直接通过openvpn程序转发，根据需要设置</span><br><span class="line">client-to-client</span><br><span class="line"># 如果客户端都使用相同的证书和密钥连接VPN，一定要打开这个选项，否则每个证书只允许一个人连接VPN</span><br><span class="line">duplicate-cn</span><br><span class="line">keepalive 10 120</span><br><span class="line">tls-auth keys/ta.key 0 # This file is secret</span><br><span class="line">comp-lzo</span><br><span class="line">persist-key</span><br><span class="line">persist-tun</span><br><span class="line"># OpenVPN的状态日志，默认为/etc/openvpn/openvpn-status.log</span><br><span class="line">status openvpn-status.log</span><br><span class="line"># OpenVPN的运行日志，默认为/etc/openvpn/openvpn.log </span><br><span class="line">log-append openvpn.log</span><br><span class="line"># 改成verb 5可以多查看一些调试信息</span><br><span class="line">verb 5</span><br></pre></td></tr></table></figure>
+<p>修改<code>/etc/sysctl.conf</code>，开启路由转发：<code>net.ipv4.ip_forword=1</code>，执行<code>sysctl -p</code>生效。</p>
+<h2 id="3-创建客户端配置文件"><a href="#3-创建客户端配置文件" class="headerlink" title="3. 创建客户端配置文件"></a>3. 创建客户端配置文件</h2><p>复制一份client.conf模板命名为client.ovpn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/doc/openvpn/sample/sample-config-files/client.conf client.ovpn</span><br></pre></td></tr></table></figure>
+<p>编辑client.ovpn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">client</span><br><span class="line">dev tun</span><br><span class="line"># 改为tcp</span><br><span class="line">proto tcp</span><br><span class="line"># OpenVPN服务器的外网IP和端口</span><br><span class="line">remote 203.195.xxx.xxx 1194</span><br><span class="line">resolv-retry infinite</span><br><span class="line">nobind</span><br><span class="line">persist-key</span><br><span class="line">persist-tun</span><br><span class="line">ca ca.crt</span><br><span class="line"># client1的证书</span><br><span class="line">cert client1.crt</span><br><span class="line"># client1的密钥</span><br><span class="line">key client1.key</span><br><span class="line">ns-cert-type server</span><br><span class="line"># 去掉前面的注释</span><br><span class="line">tls-auth ta.key 1</span><br><span class="line">comp-lzo</span><br><span class="line">verb 3</span><br></pre></td></tr></table></figure>
+<p>最后将OpenVPN服务器上的client.ovpn、ca.crt、client.crt、client.key、ta.key上传到客户端安装目录下的config文件夹</p>
+<h2 id="4-修改iptables"><a href="#4-修改iptables" class="headerlink" title="4. 修改iptables"></a>4. 修改iptables</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-restore &lt; iptables_backup</span><br></pre></td></tr></table></figure>
+<p>iptables_back文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">*nat</span><br><span class="line">:PREROUTING ACCEPT [5:341]</span><br><span class="line">:POSTROUTING ACCEPT [2:1144]</span><br><span class="line">:OUTPUT ACCEPT [2:1144]</span><br><span class="line">-A POSTROUTING -s 10.8.0.0/24 -o enp2s0 -j MASQUERADE </span><br><span class="line">COMMIT</span><br><span class="line">*filter</span><br><span class="line">:INPUT ACCEPT [134:8536]</span><br><span class="line">:FORWARD ACCEPT [0:0]</span><br><span class="line">:OUTPUT ACCEPT [176:128044]</span><br><span class="line">-A INPUT -p tcp -m tcp --dport 1194 -m comment --comment &quot;openvpn&quot; -j ACCEPT </span><br><span class="line">COMMIT</span><br></pre></td></tr></table></figure>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/Linux/github绑定自己的域名/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Linux/搭建piwigo服务器/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

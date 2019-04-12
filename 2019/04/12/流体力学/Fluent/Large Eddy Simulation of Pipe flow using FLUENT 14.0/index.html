@@ -1,0 +1,473 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Large Eddy Simulation of Pipe flow using FLUENT 14.0 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="Large Eddy Simulation of Pipe flow using FLUENT 14.0This post describes the methodology of setting up and running a LES simulation  in ANSYS-FLUENT, a">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Large Eddy Simulation of Pipe flow using FLUENT 14.0"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">Large Eddy Simulation of Pipe flow using FLUENT 14.0</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="Large-Eddy-Simulation-of-Pipe-flow-using-FLUENT-14-0"><a href="#Large-Eddy-Simulation-of-Pipe-flow-using-FLUENT-14-0" class="headerlink" title="Large Eddy Simulation of Pipe flow using FLUENT 14.0"></a>Large Eddy Simulation of Pipe flow using FLUENT 14.0</h1><p>This post describes the methodology of setting up and running a LES simulation  in ANSYS-FLUENT, a very brief description about the meshing and solution procedure is presented here. Compared to RANS, LES simulations require finer grids since it aims in resolving the large scales of turbulent motion thus providing a better insight of the flow physics however LES is a transient simulation and the computation cost of LES much higher than that of RANS, for a detailed review please see :</p>
+<ol>
+<li>Piomelli, A primer on DNS/LES.</li>
+<li>Grid-point requirements for large eddy simulation: Chapman’s estimates revisited. H. Choi and P. Moin. Physics of Fluids, 24(1), 2012 (also see the original Chapman’s paper in the late ‘70s ~78-79)</li>
+<li>Turbulent flows, Pope (2006).</li>
+</ol>
+<p>I am not describing the theory of LES here as there are several good books available and I would recommend reading, chapters 1-7 in Pope, and chapter 13 on LES. Chapters 6 and 7 in Pope’s book explains about turbulence in free shear turbulent flows (jets, self-similarity) and chapter 7 describes about stable attached turbulent flows (pipes, channels). I would highly recommend reading these as they explain the significance of certain parameters like $y+$, $u_{\tau}$, law of the wall, the regimes in a turbulent velocity profile and so on.</p>
+<p>The present tutorial is based on pipe flow at $Re = 24,580$ (experimental data of Toonder &amp; Nieuwstadt, and DNS data of X. Wu and Moin is available).</p>
+<h2 id="1-Create-a-pipe-geometry-in-ICEM-CFD"><a href="#1-Create-a-pipe-geometry-in-ICEM-CFD" class="headerlink" title="1. Create a pipe geometry in ICEM-CFD"></a>1. Create a pipe geometry in ICEM-CFD</h2><p><img src="_v_images/20181220003126165_23941.png" alt="59c676448dac7a6c56000008"><br>The dimensions of the pipe are : 2.5m in length, 0.2m in diameter.</p>
+<h2 id="2-Create-a-3D-bounding-block"><a href="#2-Create-a-3D-bounding-block" class="headerlink" title="2. Create a 3D bounding block"></a>2. Create a 3D bounding block</h2><p><img src="_v_images/20181220003152598_9347.png" alt="59c676448dac7a6c56000007"></p>
+<p> associate the edges around the circle to the circle at both the faces.</p>
+<h2 id="3-Split-the-block-in-the-form-of-an-o-grid-for-this-select-the-the-single-block-and-the-faces-on-the-circles"><a href="#3-Split-the-block-in-the-form-of-an-o-grid-for-this-select-the-the-single-block-and-the-faces-on-the-circles" class="headerlink" title="3. Split the block in the form of an o-grid : for this select the the single block and the faces on the circles"></a>3. Split the block in the form of an o-grid : for this select the the single block and the faces on the circles</h2><h2 id="4-For-better-mesh-quality-set-an-offset-of-0-65"><a href="#4-For-better-mesh-quality-set-an-offset-of-0-65" class="headerlink" title="4. For better mesh quality, set an offset of 0.65"></a>4. For better mesh quality, set an offset of 0.65</h2><p><img src="_v_images/20181220003225473_26207.png" alt="59c676448dac7a6c56000006"></p>
+<h2 id="5-Input-the-number-of-nodes-and-ratios-the-near-wall-spacing-y-here-is-0-25-and-the-wall-parallel-spacing-of-25-0-x-this-is-achieved-by-inputting-the-correct-number-of-nodes-in-each-of-the-directions"><a href="#5-Input-the-number-of-nodes-and-ratios-the-near-wall-spacing-y-here-is-0-25-and-the-wall-parallel-spacing-of-25-0-x-this-is-achieved-by-inputting-the-correct-number-of-nodes-in-each-of-the-directions" class="headerlink" title="5. Input the number of nodes and ratios (the near wall spacing, $y+$ here is 0.25) and the wall parallel spacing of 25.0 ($x+$), this is achieved by inputting the correct number of nodes in each of the directions."></a>5. Input the number of nodes and ratios (the near wall spacing, $y+$ here is 0.25) and the wall parallel spacing of 25.0 ($x+$), this is achieved by inputting the correct number of nodes in each of the directions.</h2><p><img src="_v_images/20181220003247884_22073.png" alt="59c676448dac7a6c56000009"></p>
+<p>I had input 65 nodes in the wall normal spacing, and 55 nodes in the z-direction.</p>
+<h2 id="6-The-boundary-conditions-play-an-important-role-in-LES-simulations-in-the-present-study-periodic-boundary-conditions-with-a-pressure-gradient-is-used-the-pressure-gradient-is-calculated-based-on-the-u-friction-velocity-u-tau-in-case-of-pipe-flow"><a href="#6-The-boundary-conditions-play-an-important-role-in-LES-simulations-in-the-present-study-periodic-boundary-conditions-with-a-pressure-gradient-is-used-the-pressure-gradient-is-calculated-based-on-the-u-friction-velocity-u-tau-in-case-of-pipe-flow" class="headerlink" title="6. The boundary conditions play an important role in LES simulations, in the present study periodic boundary conditions with a pressure-gradient is used, the pressure gradient is calculated based on the u friction velocity ($u_{\tau}$), in case of pipe flow :"></a>6. The boundary conditions play an important role in LES simulations, in the present study periodic boundary conditions with a pressure-gradient is used, the pressure gradient is calculated based on the u friction velocity ($u_{\tau}$), in case of pipe flow :</h2><p>$$<br>\frac{dp}{dx} = (-4u_{fric}^2/\rho)<br>$$<br>for channel:</p>
+<p>$$<br>\frac{dp}{dx} = (-2u_{fric}^2/\rho)<br>$$<br>$$<br>u_{fric} = \sqrt{\tau_w/\rho}<br>$$<br>(Refer pope for the derivations and explanations)</p>
+<p>Periodicity can be defined in icem or in fluent, in the present case periodicity is defined in icem, go to the mesh button in mesh, click on set up periodicity :</p>
+<p><img src="_v_images/20181220003326188_14477.png" alt="59c6794b8dac7a6c5600000c"></p>
+<p>set translational periodicity, and in this case the periodicity is in the x-direction based on the length of the pipe, therefore : 2.5 0.0 0.0</p>
+<p>select the vertices on the periodic faces (circles):</p>
+<p><img src="_v_images/20181220003348944_17750.png" alt="59c6794b8dac7a6c5600000b"></p>
+<p>Once selected, you can view the periodic faces by selecting faces, view periodic faces:</p>
+<p><img src="_v_images/20181220003407714_26459.png" alt="59c6794b8dac7a6c5600000a"></p>
+<p>Now you can create the parts : inlet, wall etc. and save the mesh and translate it to fluent</p>
+<p>Alternatively you can set up periodicity in fluent, but sometimes you may end up with errors such as “segmentation-violation” especially in the case of large meshes.</p>
+<h2 id="7-Setting-up-LES-in-fluent"><a href="#7-Setting-up-LES-in-fluent" class="headerlink" title="7. Setting up LES in fluent :"></a>7. Setting up LES in fluent :</h2><p>I would suggest running a RANS simulation in a similar coarser mesh with pbc in fluent and then interpolating the RANS solution in the present case.  After interpolation, you can add fluctuating components to the RANS velocity profile by :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/solve/init/init-instantaneous-vel</span><br></pre></td></tr></table></figure>
+<p>Once done, change the viscous model as Large Eddy Simulation, start with the standard <strong>Smagorinsky-Lily model</strong>. The default values of $Cs$ (0.1) is  good enough for simple attached flows, for flows involving large separations and instabilities the dynamic subgrid model can be used or the value of Cs can be set from available  literature.</p>
+<p>Set the periodic boundary condition of pressure-gradient in the boundary conditions, mass-flow could also be used but the pressure-gradient seems to be more stable and provide better convergence.</p>
+<p>For the pressure-velocity coupling, <strong>SIMPLEC algorithm</strong> is used and the <strong>bounded central differencing scheme</strong> is used for the velocity and in case of the time advancement the 2nd order backward euler implicit is used.  (bounded 2nd order implicit)</p>
+<p>You can define a small iso-curve near the wall for monitoring statistical convergence of velcocity (defined under surface monitor) </p>
+<p>Define the timestep of the simulation such that your $CFL$ number is less than 1.0</p>
+<p>$CFL = U*\Delta T/\Delta x$ where $\Delta x$ is your wall parallel spacing, I would recommend a $CFL$ of 0.50 and the number of inner iterations around 15-20.</p>
+<p>You can run the simulation now!</p>
+<h2 id="Some-points-to-be-noted"><a href="#Some-points-to-be-noted" class="headerlink" title="Some points to be noted :"></a>Some points to be noted :</h2><p>Make sure that in each time step your residuals drop down by the order of 2. You may achieve a statistically stationary state in 2-3 flow through times (FTT) , 1 FTT is defined as the time taken by a particle to cross the entire domain. Do not collect any unsteady data statistics until statistical stationary state has been reached. Once you have reached statistical convergence, you can switch on the sampling interval and unsteady data collection .. meanwhile you could monitor your $CFL$ number, plot q-criterion for the evolution of turbulence.</p>
+<p><img src="_v_images/20181220003455867_15644.jpeg" alt="59c679ad8dac7a6c5600000d"></p>
+<p>You can check for the convergence of your solution by comparing the wall shear stress of the CFD with the momentum-balance equation, which reads as :</p>
+<p>$$<br>-\frac{dp}{dx} (\pi<em>r^2</em>L)=\tau_{wall}(2<em>\pi</em>r*L)<br>$$<br>or alternatively you could check for the skin friction coefficient ($C_f$) and friction factor ($f$) ($f=4C_f$), and compare with correlations..</p>
+<p><img src="_v_images/20181220003518618_2462.jpeg" alt="59c679ad8dac7a6c5600000e"></p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/流体力学/Fluent/Fluent VOF Volume Fraction Limits/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/流体力学/Tecplot/Tecplot编辑自己想要的变量/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>配置Torque | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="配置Torque1. 下载Torque源码去Torque官网下载最新版本的源码。
+2. 编译与安装configure -&amp;gt; make -&amp;gt; make installTorque默认安装在/var/spool/torque文件夹下面。
+Ubuntu可以直接使用apt安装：
+1sudo ap">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="配置Torque"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">配置Torque</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="配置Torque"><a href="#配置Torque" class="headerlink" title="配置Torque"></a>配置Torque</h1><h2 id="1-下载Torque源码"><a href="#1-下载Torque源码" class="headerlink" title="1. 下载Torque源码"></a>1. 下载Torque源码</h2><p>去Torque<a href="http://www.adaptivecomputing.com/support/download-center/torque-download/" target="_blank" rel="noopener">官网</a>下载最新版本的源码。</p>
+<h2 id="2-编译与安装"><a href="#2-编译与安装" class="headerlink" title="2. 编译与安装"></a>2. 编译与安装</h2><p><strong><em>configure -&gt; make -&gt; make install</em></strong><br>Torque默认安装在/var/spool/torque文件夹下面。</p>
+<p>Ubuntu可以直接使用apt安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install torque-server</span><br></pre></td></tr></table></figure>
+<h2 id="3-配置Torque"><a href="#3-配置Torque" class="headerlink" title="3. 配置Torque"></a>3. 配置Torque</h2><h3 id="3-1-配置节点名称"><a href="#3-1-配置节点名称" class="headerlink" title="3.1. 配置节点名称"></a>3.1. 配置节点名称</h3><p>在/etc/hosts中加入管理节点和计算节点的IP：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure>
+<p>增加一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 torqueserver calnode</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-配置pbs-server"><a href="#3-2-配置pbs-server" class="headerlink" title="3.2. 配置pbs_server"></a>3.2. 配置pbs_server</h3><p>初始化pbs_server：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbs_server -t create</span><br></pre></td></tr></table></figure>
+<p>在Ubuntu中可以执行如下命令建立默认服务器和队列，并把自己列为管理员：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash /usr/share/doc/torque-common/torque.setup $USER torqueserver</span><br></pre></td></tr></table></figure>
+<p>修改/var/spool/torque/server_name内容为：<code>torqueserver</code><br>修改/var/spool/torque/server_priv/nodes内容为：<code>calnode np=4</code><br>创建/var/spool/torque/mom_priv/config文件，内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$pbsserver torqueserver</span><br><span class="line">$mom_host calnode</span><br></pre></td></tr></table></figure>
+<p>启动trqauthd服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start trqauthd.service</span><br></pre></td></tr></table></figure>
+<p>重启pbs_mom，pbs_sched，pbs_server。</p>
+<h3 id="3-3-设置pbs-server并创建默认队列"><a href="#3-3-设置pbs-server并创建默认队列" class="headerlink" title="3.3. 设置pbs_server并创建默认队列"></a>3.3. 设置pbs_server并创建默认队列</h3><p>执行<code>qmgr</code>进入管理界面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">set server scheduling=True</span><br><span class="line">set server default_queue=batch</span><br><span class="line">set server scheduler_iteration=600</span><br><span class="line">set server node_check_rate=150</span><br><span class="line">set server tcp_timeout=6</span><br><span class="line">set server mom_job_sync=True</span><br><span class="line">set server keep_completed=1</span><br><span class="line">set server allow_node_submit=True</span><br><span class="line"></span><br><span class="line">create queue batch</span><br><span class="line">set queue batch queue_type=Execution</span><br><span class="line">set queue batch resources_default.nodes=4</span><br><span class="line">set queue batch resources_default.walltime=480:00:00</span><br><span class="line">set queue batch enabled=True</span><br><span class="line">set queue batch started=True</span><br></pre></td></tr></table></figure>
+<p>附Sugon服务器batch队列配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set queue batch queue_type=Execution</span><br><span class="line">set queue batch Priority=1</span><br><span class="line">set queue batch set queue batch max_user_queuable=3</span><br><span class="line">set queue batch resources_max.cput=1920:00:00</span><br><span class="line">set queue batch resources_max.nodes=1:ppn=080</span><br><span class="line">set queue batch resources_max.walltime=240:00:00</span><br><span class="line">set queue batch resources_min.nodes=1:ppn=021</span><br><span class="line">set queue batch resources_default.nodes=1:ppn=8</span><br><span class="line">set queue batch resources_default.walltime=240:00:00</span><br><span class="line">set queue batch resources_assigned.nodect=1</span><br><span class="line">set queue batch max_user_run=2</span><br><span class="line">set queue batch enabled=True</span><br><span class="line">set queue batch started=True</span><br></pre></td></tr></table></figure>
+<p>#4. 一个典型的Fluent PBS脚本<br>一个典型的Fluent PBS脚本如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">#PBS -N DONGBING_FLUENT</span><br><span class="line">#PBS -q tiny</span><br><span class="line">#PBS -l nodes=1:ppn=16</span><br><span class="line">#PBS -j oe</span><br><span class="line"></span><br><span class="line">cd $PBS_O_WORKDIR</span><br><span class="line">NP=`wc -l &lt; $PBS_NODEFILE`</span><br><span class="line"></span><br><span class="line">/public/software/ansys_inc_172/v172/fluent/bin/fluent 3ddp -ssh -g -pdefault -t$NP -cnf=$PBS_NODEFILE  -i  script.jou &gt; log.txt</span><br></pre></td></tr></table></figure>
+<p>其中script.jou是Fluent的TUI命令，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">rc channel_mixture_heat_species.cas</span><br><span class="line">rd channel_mixture_heat_species.dat</span><br><span class="line"></span><br><span class="line">!pwd</span><br><span class="line"></span><br><span class="line">file/auto-save/root-name ./results/channel_hole_transient</span><br><span class="line">file/auto-save/append-file-name-with/flow-time 8</span><br><span class="line"></span><br><span class="line">file/auto-save/data-frequency 1</span><br><span class="line">solve/set/time-step 0.000001</span><br><span class="line">solve/set/max-iterations-per-time-step 200</span><br><span class="line">solve/dual-time-iterate 100 200</span><br><span class="line"></span><br><span class="line">file/auto-save/data-frequency 10</span><br><span class="line">solve/set/time-step 0.00001</span><br><span class="line">solve/set/max-iterations-per-time-step 200</span><br><span class="line">solve/dual-time-iterate 1000 200</span><br><span class="line"></span><br><span class="line">file/auto-save/data-frequency 10</span><br><span class="line">solve/set/time-step 0.0001</span><br><span class="line">solve/set/max-iterations-per-time-step 200</span><br><span class="line">solve/dual-time-iterate 1000 200</span><br><span class="line"></span><br><span class="line">!sh `ls | grep cleanup`</span><br></pre></td></tr></table></figure>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/Python/Jupyter-lab 使用 Matplotlib/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Python/Jupyter添加Python3 kernel/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

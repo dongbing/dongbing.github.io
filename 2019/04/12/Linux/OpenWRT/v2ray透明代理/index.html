@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>v2ray透明代理 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="v2ray透明代理路由器中安装v2ray在github release中下载对应版本即可，注意路由器可能是mipsle版本。
+路由器中v2ray配置1234567891011121314151617181920212223242526272829303132333435363738394041424">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="v2ray透明代理"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">v2ray透明代理</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="v2ray透明代理"><a href="#v2ray透明代理" class="headerlink" title="v2ray透明代理"></a>v2ray透明代理</h1><h2 id="路由器中安装v2ray"><a href="#路由器中安装v2ray" class="headerlink" title="路由器中安装v2ray"></a>路由器中安装v2ray</h2><p>在github release中下载对应版本即可，注意路由器可能是mipsle版本。</p>
+<h2 id="路由器中v2ray配置"><a href="#路由器中v2ray配置" class="headerlink" title="路由器中v2ray配置"></a>路由器中v2ray配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;outbound&quot;: &#123;</span><br><span class="line">    &quot;protocol&quot;: &quot;vmess&quot;,</span><br><span class="line">    &quot;settings&quot;:&#123;</span><br><span class="line">        &quot;vnext&quot;:[</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;address&quot;:&quot;35.229.241.54&quot;,</span><br><span class="line">                &quot;port&quot;: 10010,</span><br><span class="line">                &quot;users&quot;: [</span><br><span class="line">                    &#123;</span><br><span class="line">                    &quot;id&quot;: &quot;8e540d28-3887-49a7-8fda-d7c7554dc8bc&quot;,</span><br><span class="line">                    &quot;level&quot;: 1,</span><br><span class="line">                    &quot;alterId&quot;: 64</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">  &quot;outboundDetour&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;protocol&quot;:&quot;freedom&quot;,</span><br><span class="line">        &quot;settings&quot;:&#123;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;tag&quot;:&quot;direct&quot;</span><br><span class="line">     &#125;    </span><br><span class="line">  ],</span><br><span class="line">  &quot;inbound&quot;: &#123;</span><br><span class="line">  &quot;protocol&quot;: &quot;dokodemo-door&quot;,</span><br><span class="line">  &quot;port&quot;: 5353, </span><br><span class="line">  &quot;listen&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;address&quot;: &quot;8.8.8.8&quot;,</span><br><span class="line">    &quot;port&quot;: 53,</span><br><span class="line">    &quot;network&quot;: &quot;udp&quot;,</span><br><span class="line">    &quot;timeout&quot;: 0,</span><br><span class="line">    &quot;followRedirect&quot;: false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;inboundDetour&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">&quot;domainOverride&quot;:[&quot;http&quot;, &quot;tls&quot;], </span><br><span class="line">&quot;protocol&quot;: &quot;dokodemo-door&quot;,</span><br><span class="line">&quot;port&quot;:1060, </span><br><span class="line">&quot;settings&quot;:&#123;</span><br><span class="line">    &quot;network&quot;: &quot;tcp&quot;,</span><br><span class="line">    &quot;timeout&quot;: 30,</span><br><span class="line">    &quot;followRedirect&quot;: true</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">    &quot;protocol&quot;:&quot;socks&quot;,</span><br><span class="line">    &quot;port&quot;:8080,</span><br><span class="line">    &quot;settings&quot;:&#123;</span><br><span class="line">            &quot;auth&quot;:&quot;noauth&quot;,</span><br><span class="line">            &quot;udp&quot;:false,</span><br><span class="line">            &quot;ip&quot;:&quot;127.0.0.1&quot;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &quot;routing&quot;: &#123;</span><br><span class="line">       &quot;strategy&quot;:&quot;rules&quot;,</span><br><span class="line">      &quot;settings&quot;:&#123;</span><br><span class="line">         &quot;domainStrategy&quot;:&quot;IPIfNonMatch&quot;,</span><br><span class="line">         &quot;rules&quot;:[</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">               &quot;port&quot;:&quot;1-52&quot;,</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">               &quot;port&quot;:&quot;54-79&quot;,</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">               &quot;port&quot;:&quot;81-442&quot;,</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">               &quot;port&quot;:&quot;444-3999&quot;,</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">               &quot;port&quot;:&quot;4001-65535&quot;, </span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">			&#123;</span><br><span class="line">            &quot;domain&quot;:[ </span><br><span class="line">              &quot;vultr.com&quot;</span><br><span class="line">                ],</span><br><span class="line">                  &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">                &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">              &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;chinasites&quot;,</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;field&quot;,</span><br><span class="line">               &quot;ip&quot;:[</span><br><span class="line">                  &quot;0.0.0.0/8&quot;,</span><br><span class="line">                  &quot;10.0.0.0/8&quot;,</span><br><span class="line">                  &quot;100.64.0.0/10&quot;,</span><br><span class="line">                  &quot;127.0.0.0/8&quot;,</span><br><span class="line">                  &quot;169.254.0.0/16&quot;,</span><br><span class="line">                  &quot;172.16.0.0/12&quot;,</span><br><span class="line">                  &quot;192.0.0.0/24&quot;,</span><br><span class="line">                  &quot;192.0.2.0/24&quot;,</span><br><span class="line">                  &quot;192.168.0.0/16&quot;,</span><br><span class="line">                  &quot;198.18.0.0/15&quot;,</span><br><span class="line">                  &quot;198.51.100.0/24&quot;,</span><br><span class="line">                  &quot;203.0.113.0/24&quot;,</span><br><span class="line">                  &quot;::1/128&quot;,</span><br><span class="line">                  &quot;fc00::/7&quot;,</span><br><span class="line">                  &quot;fe80::/10&quot;</span><br><span class="line">               ],</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">               &quot;type&quot;:&quot;chinaip&quot;,</span><br><span class="line">               &quot;outboundTag&quot;:&quot;direct&quot;</span><br><span class="line">            &#125;</span><br><span class="line">         ]</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">   &quot;transport&quot;:&#123;</span><br><span class="line">      &quot;tcpSettings&quot;:&#123;</span><br><span class="line">         &quot;connectionReuse&quot;:true</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;kcpSettings&quot;:&#123;</span><br><span class="line">         &quot;mtu&quot;:1350,</span><br><span class="line">         &quot;tti&quot;:20,</span><br><span class="line">         &quot;uplinkCapacity&quot;:100,</span><br><span class="line">         &quot;downlinkCapacity&quot;:100,</span><br><span class="line">         &quot;congestion&quot;:false,</span><br><span class="line">         &quot;readBufferSize&quot;:5,</span><br><span class="line">         &quot;writeBufferSize&quot;:5,</span><br><span class="line">         &quot;header&quot;:&#123;</span><br><span class="line">            &quot;type&quot;:&quot;utp&quot;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="网关iptables设置"><a href="#网关iptables设置" class="headerlink" title="网关iptables设置"></a>网关iptables设置</h2><p>需要设置iptables把所有tcp流量导入网关的1060端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -N v2ray</span><br><span class="line">iptables -t nat -A v2ray -d 11.22.33.44 -j RETURN //改成你的 VPS 的 IP</span><br><span class="line">iptables -t nat -A v2ray -d 0.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 10.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 127.0.0.0/8 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 169.254.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 172.16.0.0/12 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 192.168.0.0/16 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 224.0.0.0/4 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -d 240.0.0.0/4 -j RETURN</span><br><span class="line">iptables -t nat -A v2ray -p tcp -j REDIRECT --to-ports 1060</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp -j v2ray</span><br></pre></td></tr></table></figure>
+<p>这个方法是参考利用 v2ray + GFWList 实现路由器自动翻墙。</p>
+<h2 id="dnsmasq配置"><a href="#dnsmasq配置" class="headerlink" title="dnsmasq配置"></a>dnsmasq配置</h2><p>用v2ray转发dnsmasq的非标准端口查询GFWlist里面的域名，从而避免DNS查询结果被污染。GFWlist配置文件使用gfwlist2dnmasq这个脚本来生成。</p>
+<p>dnsmasq配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">port=53</span><br><span class="line">no-resolv</span><br><span class="line">no-poll</span><br><span class="line">server=114.114.114.114</span><br><span class="line">listen-address=192.168.1.1,127.0.0.1</span><br><span class="line">dhcp-range=192.168.1.100,192.168.1.199,255.255.255.0,12h</span><br><span class="line">cache-size=131072</span><br><span class="line">log-queries</span><br><span class="line">log-dhcp</span><br><span class="line">log-facility=/var/log/dnsmasq/dnsmasq.log</span><br><span class="line">conf-dir=/etc/dnsmasq.d</span><br></pre></td></tr></table></figure>
+<p><strong>注：在路由器中某些设置已经存在，自定义的时候要去掉。如果路由器中有mdns或者其他dns进程要kill掉。</strong></p>
+<p>墙内墙外域名分开查询:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cokebar/gfwlist2dnsmasq</span><br><span class="line">cd gfwlist2dnsmasq</span><br><span class="line">./gfwlist2dnsmasq.sh -d 127.0.0.1 -p 5353 -o dnsmasq_gfwlist.conf    //5353 是v2ray配置的转发dns查询端口号</span><br><span class="line">mkdir /etc/dnsmasq.d</span><br><span class="line">cp dnsmasq_gfwlist.conf /etc/dnsmasq.d</span><br></pre></td></tr></table></figure>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/Linux/Ubuntu/CFX在Ubuntu平台配置/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Linux/Ubuntu/Ubuntu配置命令行发送邮件/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

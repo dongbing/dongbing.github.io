@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LaTeX括号总结 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="LaTeX括号总结
+
+
+功能
+语法
+显示
+
+
+
+
+不好看
+(\frac{1}{2})
+$(\frac{1}{2})$
+
+
+好一点
+\left(\frac{1}{2}\right)
+$\left(\frac{1}{2}\right)$
+
+
+
+可以使用\left和\right来显示不同括号
+
+
+功能
+语">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="LaTeX括号总结"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">LaTeX括号总结</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="LaTeX括号总结"><a href="#LaTeX括号总结" class="headerlink" title="LaTeX括号总结"></a>LaTeX括号总结</h1><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>语法</th>
+<th>显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不好看</td>
+<td>(\frac{1}{2})</td>
+<td>$(\frac{1}{2})$</td>
+</tr>
+<tr>
+<td>好一点</td>
+<td>\left(\frac{1}{2}\right)</td>
+<td>$\left(\frac{1}{2}\right)$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="可以使用-left和-right来显示不同括号"><a href="#可以使用-left和-right来显示不同括号" class="headerlink" title="可以使用\left和\right来显示不同括号"></a>可以使用\left和\right来显示不同括号</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>语法</th>
+<th>显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>圆括号</td>
+<td>\left( \frac{a}{b} \right)</td>
+<td>$\left( \frac{a}{b} \right)$</td>
+</tr>
+<tr>
+<td>方括号</td>
+<td>\left[ \frac{a}{b} \right]</td>
+<td>$\left[ \frac{a}{b} \right]$</td>
+</tr>
+<tr>
+<td>花括号</td>
+<td>\left\{ \frac{a}{b} \right\}</td>
+<td>$\left{ \frac{a}{b} \right}$</td>
+</tr>
+<tr>
+<td>角括号</td>
+<td>\left \langle \frac{a}{b} \right \rangle</td>
+<td>$\left \langle \frac{a}{b} \right \rangle$</td>
+</tr>
+<tr>
+<td>绝对值</td>
+<td>\left\</td>
+<td>\frac{a}{b} \right \</td>
+<td></td>
+<td>$\left</td>
+<td>\frac{a}{b} \right</td>
+<td>$</td>
+</tr>
+<tr>
+<td>范数</td>
+<td>\left\</td>
+<td>\frac{a}{b} \right \</td>
+<td></td>
+<td>$\left \</td>
+<td>\frac{a}{b} \right \</td>
+<td>$</td>
+</tr>
+<tr>
+<td>取整</td>
+<td>\left \lfloor \frac{a}{b} \right\rfloor</td>
+<td>$\left\lfloor \frac{a}{b} \right\rfloor$</td>
+</tr>
+<tr>
+<td>取顶</td>
+<td>\left \lceil \frac{a}{b} \right\rceil</td>
+<td>$\left\lceil \frac{a}{b} \right\rceil$</td>
+</tr>
+<tr>
+<td>斜线</td>
+<td>\left/ \frac{a}{b} \right\backslash</td>
+<td>$\left/ \frac{a}{b} \right\backslash$</td>
+</tr>
+<tr>
+<td>上下箭头</td>
+<td>\left\uparrow \frac{a}{b} \right\downarrow<br>\left\Uparrow \frac{a}{b} \right\Downarrow<br>\left\updownarrow \frac{a}{b} \right\Updownarrow</td>
+<td>$\left\uparrow \frac{a}{b} \right\downarrow$<br>$\left\Uparrow \frac{a}{b} \right\Downarrow$<br>$\left\updownarrow \frac{a}{b} \right\Updownarrow$</td>
+</tr>
+<tr>
+<td>混合括号</td>
+<td>\left\langle \psi \right\</td>
+<td></td>
+<td>$\left\langle \psi \right</td>
+<td>$</td>
+</tr>
+<tr>
+<td>单左括号</td>
+<td>\left\{ \frac{a}{b} \right .</td>
+<td>$\left{ \frac{a}{b} \right .$</td>
+</tr>
+<tr>
+<td>单右括号</td>
+<td>\left. \frac{a}{b} \right }</td>
+<td>$\left . \frac{a}{b} \right }$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>可以使用\big, \Big, \bigg, \Bigg控制括号的大小，比如代码<strong>\Bigg</strong> ( <strong>\bigg</strong> [ <strong>\Big</strong> { <strong>\big</strong>\langle \left | | \frac{a}{b} | \right | <strong>\big</strong> \rangle \Big } <strong>\bigg</strong> ] <strong>\Bigg</strong> )显示$\Bigg ( \bigg [ \Big { \big\langle \left | | \frac{a}{b} | \right | \big \rangle \Big } \bigg ] \Bigg )$</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/Windows/Windows远程桌面提示您的凭据不工作/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/Linux/Linux启动seafile客户端/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

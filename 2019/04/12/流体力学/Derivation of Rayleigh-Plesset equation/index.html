@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Derivation of Rayleigh-Plesset equation | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="Derivation of Rayleigh-Plesset equation1. IntroductionThe most popular nonlinear equation for description of the nonlinear response of a gas bubble in">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Derivation of Rayleigh-Plesset equation"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">Derivation of Rayleigh-Plesset equation</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="Derivation-of-Rayleigh-Plesset-equation"><a href="#Derivation-of-Rayleigh-Plesset-equation" class="headerlink" title="Derivation of Rayleigh-Plesset equation"></a>Derivation of Rayleigh-Plesset equation</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>The most popular nonlinear equation for description of the nonlinear response of a gas bubble in liquid to a driving pressure field is the Rayleigh-Plesset equation. This can be derived from first principles using the bubble radius R as the dynamic parameter. However there exist heuristic formulations based on a form of the Rayleigh-Plesset equation in which the bubble volume $V$ is used as the dynamic parameter, where the damping is not derived from first principles. The predictions of the two approaches do not always agree, and this study was undertaken to derive to derive a form of the Rayleigh-Plesset equation in which the bubble volume $V$ is used as the dynamic parameter, and where the physics describing the dissipation is identical to that used when the Rayleigh-Plesset equation is cited in the radius frame.</p>
+<h2 id="2-Derivation-of-the-Rayleigh-Plesset-equation-in-terms-of-the-bubble-radius"><a href="#2-Derivation-of-the-Rayleigh-Plesset-equation-in-terms-of-the-bubble-radius" class="headerlink" title="2. Derivation of the Rayleigh-Plesset equation in terms of the bubble radius"></a>2. Derivation of the Rayleigh-Plesset equation in terms of the bubble radius</h2><h3 id="2-1-Derivation-of-the-Rayleigh-Plesset-equation-in-terms-of-the-bubble-radius-using-an-energy-balance"><a href="#2-1-Derivation-of-the-Rayleigh-Plesset-equation-in-terms-of-the-bubble-radius-using-an-energy-balance" class="headerlink" title="2.1 Derivation of the Rayleigh-Plesset equation in terms of the bubble radius using an energy balance"></a>2.1 Derivation of the Rayleigh-Plesset equation in terms of the bubble radius using an energy balance</h3><p>Consider a spherical gas bubble which pulsates in an incompressible liquid as a result of an insonifying field (the long wavelength limit being assumed throughout this book). The fluid velocity $u(r,t)$ falls of as an inverse square law with range $r$ as a result of the assumption of liquid incompressibility, which implies that:</p>
+<p>$$<br>4\pi R^2(t)\times \dot{R}(t)=4\pi r^2(t) \times u(r,t)<br>$$<br>$$<br>u(r,t) = \frac{R^2(t)}{r^2(t)}\dot{R}(t)<br>\tag{1}<br>$$<br>where the bubble has radius $R(t)$ and wall velocity $\dot{R}(t)$.</p>
+<p>If the spatial scales over which this pressure changes are much greater than the bubble radius, this almost equals the liquid pressure far from the bubble, $P_{\infty}= P_0+P(t)$, which includes a dynamic component $P(t)$. <strong>The difference between this work, and that done by the pressure $P_L$ at the bubble wall, equals the kinetic energy in the liquid ($\phi_{KE}$)</strong>:</p>
+<p>$$<br>\phi_{KE} = \frac{1}{2} \rho_0 \int_{r=R}^{r=\infty}4\pi r^2u^2\text{d}r=2\pi \rho_0 R^3 \dot{R}^2<br>\tag{2}<br>$$<br>This balance can be expressed as follows:</p>
+<p>$$<br>\int_{R_0}^{R}(P_L-P_{\infty})4 \pi R^2 \text{d}R=2 \pi \rho_0 R^3 \dot{R}^2<br>\tag{3}<br>$$<br>Differentiation of equation 3 with respect to $R$, noting that</p>
+<p>$$<br>\frac{\text{d}\dot{R}^2}{\text{d}R}=2\ddot{R}<br>$$<br>gives</p>
+<p>$$<br>\frac{P_L(t)-P_{\infty}}{\rho_0}=R\ddot{R}+\frac{3}{2}\dot{R}^2<br>\tag{4}<br>$$</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/流体力学/Maxwell-Stefan diffusion/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/流体力学/MacCormack method/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

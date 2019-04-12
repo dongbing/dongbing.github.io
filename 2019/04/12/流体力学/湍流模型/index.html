@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>湍流模型 | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="湍流模型1 为正确的湍流模型使用正确的CFD模型一个虚构的故事。海森堡说“当我遇到上帝的时候，我会问他两个问题：为什么会有相对论？为什么会有湍流？我想上帝可能只能回答第一个问题。“基于这一观点， 湍流如此复杂， 计算流体力学中湍流模型具有争议也没有什么好奇怪的了。
+因此在实际工程计算过程中，当你
+2">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="湍流模型"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">湍流模型</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-04-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="湍流模型"><a href="#湍流模型" class="headerlink" title="湍流模型"></a>湍流模型</h1><h2 id="1-为正确的湍流模型使用正确的CFD模型"><a href="#1-为正确的湍流模型使用正确的CFD模型" class="headerlink" title="1 为正确的湍流模型使用正确的CFD模型"></a>1 为正确的湍流模型使用正确的CFD模型</h2><p>一个虚构的故事。海森堡说“当我遇到上帝的时候，我会问他两个问题：为什么会有相对论？为什么会有湍流？我想上帝可能只能回答第一个问题。“基于这一观点， 湍流如此复杂， 计算流体力学中湍流模型具有争议也没有什么好奇怪的了。</p>
+<p>因此在实际工程计算过程中，当你</p>
+<h2 id="2-常见应用场合的湍流模型选择"><a href="#2-常见应用场合的湍流模型选择" class="headerlink" title="2 常见应用场合的湍流模型选择"></a>2 常见应用场合的湍流模型选择</h2><table>
+<thead>
+<tr>
+<th>应用</th>
+<th>模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内流及电子冷却</td>
+<td>Wall Treatment models</td>
+</tr>
+<tr>
+<td>气动问题（跨声速流动）</td>
+<td>RANS模型：Spalart-Allmaras模型</td>
+</tr>
+<tr>
+<td>一般问题，复杂几何的外部流动</td>
+<td>RANS模型：k-epsilon模型</td>
+</tr>
+<tr>
+<td>一般问题，内部流动，射流，大曲率流，分离流</td>
+<td>RANS模型：k-w模型</td>
+</tr>
+<tr>
+<td>旋风，强旋转以及其他复杂流动</td>
+<td>RANS模型：雷诺应力模型</td>
+</tr>
+<tr>
+<td>介于层流与湍流之间的流动</td>
+<td>各种转捩模型</td>
+</tr>
+<tr>
+<td>热疲劳，振动，浮力流（船舶设计）</td>
+<td>LES模型</td>
+</tr>
+<tr>
+<td>外部气动力，气动声学，壁面湍流</td>
+<td>DES，DDES，IDDES模型</td>
+</tr>
+<tr>
+<td>基础理论研究及湍流模型构建</td>
+<td>DNS模拟</td>
+</tr>
+<tr>
+<td>分离区域，航天</td>
+<td>Scale Adaptive Simulation（SAS模型）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-1-Wall-Treatment-Models"><a href="#2-1-Wall-Treatment-Models" class="headerlink" title="2.1 Wall Treatment Models"></a>2.1 Wall Treatment Models</h3><h4 id="1、规格参数"><a href="#1、规格参数" class="headerlink" title="1、规格参数"></a>1、规格参数</h4><ul>
+<li>利用无量纲壁面距离(Y+)或者length-Velocities(L-Vel)计算湍流粘度</li>
+<li>求解所有的流动</li>
+<li>非常稳健</li>
+<li>计算开销非常小<h4 id="2、应用"><a href="#2、应用" class="headerlink" title="2、应用"></a>2、应用</h4></li>
+<li>内部流动，特别是电子散热问题<h4 id="3、局限性"><a href="#3、局限性" class="headerlink" title="3、局限性"></a>3、局限性</h4></li>
+<li>计算精度较低</li>
+</ul>
+<p>关于Wall Treatment Model在各类CFD软件中的存在情况，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>Altair AcuSolve</th>
+<th>Autodesk CFD</th>
+<th>COMSOL</th>
+<th>ANSYS</th>
+<th>OpenFOAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高雷诺数（High Y+）</td>
+<td>√</td>
+<td></td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>低雷诺数（Low Y+）</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>All Y+ Hybrid Treatment</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>Length-Velocities(L-Vel)</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2-RANS模型"><a href="#2-2-RANS模型" class="headerlink" title="2.2 RANS模型"></a>2.2 RANS模型</h3><p>关于RANS模型：</p>
+<ul>
+<li>Reynolds-averaged Navier-Stokes(RANS)是一个湍流模型大家族，包含了很多的子模型</li>
+<li>这些模型的特性是在NS方程基础上添加了一个额外的粘度项</li>
+<li>这些模型的区别在于对于额外的粘度项的处理方式不同</li>
+<li>这些模型都包含一个通用项：湍动能k，单位质量湍流脉动的动能<h4 id="2-2-1-Spalart-Allmaras模型"><a href="#2-2-1-Spalart-Allmaras模型" class="headerlink" title="2.2.1 Spalart-Allmaras模型"></a>2.2.1 Spalart-Allmaras模型</h4></li>
+</ul>
+<p>1、规格参数</p>
+<ul>
+<li>一方程湍流模型</li>
+<li>没有壁面函数，增加了一个新的变量SA粘度</li>
+<li>对内存要求不高</li>
+<li>具有非常好的收敛性</li>
+<li>在精度与简化之间做出了非常好的折中</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>主要应用于空气动力学流动问题。如机翼表面的跨声速流动</li>
+</ul>
+<p>3、局限性</p>
+<p>*不适合求解剪切流与分离流</p>
+<p>SA模型在一些CFD软件中的存在如表所示。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>Altair AcuSolve</th>
+<th>Autodesk CFD</th>
+<th>COMSOL</th>
+<th>ANSYS</th>
+<th>OpenFOAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准形式（低雷诺数）</td>
+<td>√</td>
+<td></td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>粗糙壁面SA</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>高雷诺数SA</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-2-2-k-epsilon模型"><a href="#2-2-2-k-epsilon模型" class="headerlink" title="2.2.2 k-epsilon模型"></a>2.2.2 k-epsilon模型</h4><p>1、规格参数</p>
+<ul>
+<li>基于湍动能k及湍流耗散率epsilon</li>
+<li>使用壁面函数，因此黏性子层及过渡层无法仿真</li>
+<li>非常流行的两方程模型</li>
+<li>可靠、收敛性好、内存需求低</li>
+<li>有很多的变体模型，如realizable k-epsilon，RNG k-epsilon等</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>适用于无分离、可压/不可压流动问题，特别适用于复杂几何的外部流动问题</li>
+</ul>
+<p>3、局限性</p>
+<ul>
+<li>对于无滑移壁面、逆压梯度、强曲率流动以及射流流动不精确。耗散率不容易计算。</li>
+</ul>
+<h4 id="2-2-3-k-w模型"><a href="#2-2-3-k-w模型" class="headerlink" title="2.2.3 k-w模型"></a>2.2.3 k-w模型</h4><p>1、模型参数</p>
+<ul>
+<li>基于k及w，w要比e更容易求解</li>
+<li>内存消耗与k-e模型相当</li>
+<li>通常建议使用SST k-w模型，而不用标准k-w</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>适用于内流场，曲率流、分离流及射流</li>
+</ul>
+<p>3、限制</p>
+<ul>
+<li>与k-e模型相比，收敛更困难，且计算结果对初始条件很敏感</li>
+</ul>
+<h4 id="2-2-4-Reynolds-Stress-Transport模型"><a href="#2-2-4-Reynolds-Stress-Transport模型" class="headerlink" title="2.2.4 Reynolds Stress Transport模型"></a>2.2.4 Reynolds Stress Transport模型</h4><p>1、模型参数</p>
+<ul>
+<li>试图直接模拟RANS方程的流动项</li>
+<li>基于6个用于湍流应力的方程</li>
+<li>能够很好的反应流动行为</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>适用于评价新的现象及复杂的流动（如旋风分离及旋转）</li>
+</ul>
+<p>3、限制</p>
+<ul>
+<li>非常消耗计算资源，计算结果对初始条件很敏感，需要高质量的计算网格。</li>
+</ul>
+<h4 id="2-2-5-转捩模型"><a href="#2-2-5-转捩模型" class="headerlink" title="2.2.5 转捩模型"></a>2.2.5 转捩模型</h4><p>1、模型参数</p>
+<ul>
+<li>模型用于模拟流动从层流转变到湍流的过程</li>
+<li>转捩不连续</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>适用于流动从层流转变到湍流的情况</li>
+</ul>
+<p>3、限制</p>
+<ul>
+<li>边界条件会对计算造成困难</li>
+</ul>
+<h4 id="2-2-6-LES模型"><a href="#2-2-6-LES模型" class="headerlink" title="2.2.6 LES模型"></a>2.2.6 LES模型</h4><p>1、模型参数</p>
+<ul>
+<li>大涡模拟基于自相似理论</li>
+<li>使用sub-grid-scale模拟计算小涡，而大涡基于几何计算</li>
+<li>将大涡与小涡的速度场分开</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>热疲劳、振动以及浮力流动(船舶设计)</li>
+</ul>
+<p>3、局限性</p>
+<ul>
+<li>近壁面区域计算困难</li>
+</ul>
+<h4 id="2-2-7-DES-DDES-IDDES模型"><a href="#2-2-7-DES-DDES-IDDES模型" class="headerlink" title="2.2.7 DES,DDES,IDDES模型"></a>2.2.7 DES,DDES,IDDES模型</h4><p>1、模型参数</p>
+<ul>
+<li>分离涡模拟（DES）在近壁面采用RANS，在湍流核心区采用LES</li>
+<li>Delayed DES(DDES)模拟可以阻止模型应力损耗以及网格导致的分离</li>
+<li>Improve DDES与DDES模型一样解决对数区不匹配的问题</li>
+</ul>
+<p>2、应用</p>
+<p>*适用于外流空气动力学，气动声学，壁面湍流等</p>
+<p>3、局限性</p>
+<ul>
+<li>程序设计麻烦</li>
+</ul>
+<h4 id="2-2-8-直接数值模拟DNS"><a href="#2-2-8-直接数值模拟DNS" class="headerlink" title="2.2.8 直接数值模拟DNS"></a>2.2.8 直接数值模拟DNS</h4><p>1、模型参数</p>
+<ul>
+<li>直接采用数值方法求解NS方程，不采用任何湍流模型</li>
+<li>湍流的时间及空间尺度在网格中进行求解</li>
+</ul>
+<p>2、应用</p>
+<ul>
+<li>机理研究以及工程应用中湍流模型开发</li>
+</ul>
+<p>3、限制</p>
+<ul>
+<li>对计算资源要求非常高。目前仅用于低雷诺数流动</li>
+</ul>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/04/12/流体力学/边界层分离 Flow separation/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/04/12/VASP/ISMEAR和SIGMA/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
