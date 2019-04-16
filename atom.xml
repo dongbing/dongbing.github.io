@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dongbing.me/"/>
-  <updated>2019-04-12T15:39:45.886Z</updated>
+  <updated>2019-04-16T04:26:32.568Z</updated>
   <id>http://dongbing.me/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Windows远程桌面提示您的凭据不工作</title>
-    <link href="http://dongbing.me/2019/04/12/Windows/Windows%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E6%8F%90%E7%A4%BA%E6%82%A8%E7%9A%84%E5%87%AD%E6%8D%AE%E4%B8%8D%E5%B7%A5%E4%BD%9C/"/>
-    <id>http://dongbing.me/2019/04/12/Windows/Windows远程桌面提示您的凭据不工作/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.886Z</updated>
+    <title>改造Powershell</title>
+    <link href="http://dongbing.me/2019/04/16/Windows/%E6%94%B9%E9%80%A0Powershell/"/>
+    <id>http://dongbing.me/2019/04/16/Windows/改造Powershell/</id>
+    <published>2019-04-16T04:26:32.568Z</published>
+    <updated>2019-04-16T04:26:32.568Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Windows远程桌面提示您的凭据不工作"><a href="#Windows远程桌面提示您的凭据不工作" class="headerlink" title="Windows远程桌面提示您的凭据不工作"></a>Windows远程桌面提示您的凭据不工作</h1><h2 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h2><p>进入组策略编辑器。<br>计算机配置→Window设置→安全设置→安全选项→网络访问：本地账户的共享和安全模型→经典-对本地用户进行身份验证，不改变起本来身份</p><h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>进入组策略编辑器。<br>计算机配置→管理模版→系统→凭据分配→允许分配保存的凭据用于仅NTLM服务器身份验证→启用→输入“TERMSRV/*”</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="改造Powershell"><a href="#改造Powershell" class="headerlink" title="改造Powershell"></a>改造Powershell</h1><h2 id="改进-PowerShell-的字体"><a href="#改进-PowerShell-的字体" class="headerlink" title="改进 PowerShell 的字体"></a>改进 PowerShell 的字体</h2><p>下载解压安装更纱黑体之后，我们重新启动一个 PowerShell 终端，就可以在菜单栏右键，选择「属性-字体」，并在字体中选择更纱黑体。适合终端使用的等宽字体是「等距更纱黑体 T SC」或「Sarasa Mono T SC」。</p><h2 id="更换-PowerShell-的配色"><a href="#更换-PowerShell-的配色" class="headerlink" title="更换 PowerShell 的配色"></a>更换 PowerShell 的配色</h2><p>微软官方提供了一个更换 PowerShell 配色的小工具：ColorTool.exe，我们可以利用它来更换 PowerShell 的主题颜色。ColorTool 支持 iTerm 主题（以 .itermcolors 结尾的主题文件）。</p><p>如果使用 Scoop，也可以这样安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install colortool</span><br></pre></td></tr></table></figure><p>ColorTool 使用非常简单。工具自带了几种主题，可以利用下面这个命令进行查看：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colortool -s</span><br></pre></td></tr></table></figure><p>比如希望将主题配色更换为 OneHalfDark.itermcolors，只需要输入下面这个命令就可以更换并预览更新：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colortool OneHalfDark</span><br></pre></td></tr></table></figure></p><h2 id="Oh-my-posh"><a href="#Oh-my-posh" class="headerlink" title="Oh my posh"></a>Oh my posh</h2><p>安装chocolatey<br><a href="https://chocolatey.org/install" target="_blank" rel="noopener">https://chocolatey.org/install</a></p><p>安装ConEmu<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install ConEmu</span><br></pre></td></tr></table></figure></p><p>安装Oh my posh<br><a href="https://github.com/JanDeDobbeleer/oh-my-posh" target="_blank" rel="noopener">https://github.com/JanDeDobbeleer/oh-my-posh</a></p><h2 id="Fluent-Terminal"><a href="#Fluent-Terminal" class="headerlink" title="Fluent Terminal"></a>Fluent Terminal</h2><p>Fluent Terminal 在 GitHub 上面开源，项目地址在：felixse/FluentTerminal。</p><p>需要从 其 GitHub Release 页面 下载安装它。通常情况下，如果你的 Windows 版本较新，可以直接使用 No Dependencies 的那个版本，不过如果接下来你安装过程出现问题，那么就使用第一个安装包。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;Windows远程桌面提示您的凭据不工作&quot;&gt;&lt;a href=&quot;#Windows远程桌面提示您的凭据不工作&quot; class=&quot;headerlink&quot; title=&quot;Windows远程桌面提示您的凭据不工作&quot;&gt;&lt;/a&gt;Windows远程桌面提示您的凭据不工作&lt;/h1&gt;&lt;
+        &lt;h1 id=&quot;改造Powershell&quot;&gt;&lt;a href=&quot;#改造Powershell&quot; class=&quot;headerlink&quot; title=&quot;改造Powershell&quot;&gt;&lt;/a&gt;改造Powershell&lt;/h1&gt;&lt;h2 id=&quot;改进-PowerShell-的字体&quot;&gt;&lt;a hre
       
     
     </summary>
@@ -38,45 +38,19 @@
   </entry>
   
   <entry>
-    <title>LaTeX括号总结</title>
-    <link href="http://dongbing.me/2019/04/12/LaTeX/LaTeX%E6%8B%AC%E5%8F%B7%E6%80%BB%E7%BB%93/"/>
-    <id>http://dongbing.me/2019/04/12/LaTeX/LaTeX括号总结/</id>
+    <title>Windows 文字转语音</title>
+    <link href="http://dongbing.me/2019/04/12/Windows/Windows%20%E6%96%87%E5%AD%97%E8%BD%AC%E8%AF%AD%E9%9F%B3/"/>
+    <id>http://dongbing.me/2019/04/12/Windows/Windows 文字转语音/</id>
     <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.114Z</updated>
+    <updated>2019-04-16T04:26:32.744Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="LaTeX括号总结"><a href="#LaTeX括号总结" class="headerlink" title="LaTeX括号总结"></a>LaTeX括号总结</h1><table><thead><tr><th>功能</th><th>语法</th><th>显示</th></tr></thead><tbody><tr><td>不好看</td><td>(\frac{1}{2})</td><td>$(\frac{1}{2})$</td></tr><tr><td>好一点</td><td>\left(\frac{1}{2}\right)</td><td>$\left(\frac{1}{2}\right)$</td></tr></tbody></table><h2 id="可以使用-left和-right来显示不同括号"><a href="#可以使用-left和-right来显示不同括号" class="headerlink" title="可以使用\left和\right来显示不同括号"></a>可以使用\left和\right来显示不同括号</h2><table><thead><tr><th>功能</th><th>语法</th><th>显示</th></tr></thead><tbody><tr><td>圆括号</td><td>\left( \frac{a}{b} \right)</td><td>$\left( \frac{a}{b} \right)$</td></tr><tr><td>方括号</td><td>\left[ \frac{a}{b} \right]</td><td>$\left[ \frac{a}{b} \right]$</td></tr><tr><td>花括号</td><td>\left\{ \frac{a}{b} \right\}</td><td>$\left{ \frac{a}{b} \right}$</td></tr><tr><td>角括号</td><td>\left \langle \frac{a}{b} \right \rangle</td><td>$\left \langle \frac{a}{b} \right \rangle$</td></tr><tr><td>绝对值</td><td>\left\</td><td>\frac{a}{b} \right \</td><td></td><td>$\left</td><td>\frac{a}{b} \right</td><td>$</td></tr><tr><td>范数</td><td>\left\</td><td>\frac{a}{b} \right \</td><td></td><td>$\left \</td><td>\frac{a}{b} \right \</td><td>$</td></tr><tr><td>取整</td><td>\left \lfloor \frac{a}{b} \right\rfloor</td><td>$\left\lfloor \frac{a}{b} \right\rfloor$</td></tr><tr><td>取顶</td><td>\left \lceil \frac{a}{b} \right\rceil</td><td>$\left\lceil \frac{a}{b} \right\rceil$</td></tr><tr><td>斜线</td><td>\left/ \frac{a}{b} \right\backslash</td><td>$\left/ \frac{a}{b} \right\backslash$</td></tr><tr><td>上下箭头</td><td>\left\uparrow \frac{a}{b} \right\downarrow<br>\left\Uparrow \frac{a}{b} \right\Downarrow<br>\left\updownarrow \frac{a}{b} \right\Updownarrow</td><td>$\left\uparrow \frac{a}{b} \right\downarrow$<br>$\left\Uparrow \frac{a}{b} \right\Downarrow$<br>$\left\updownarrow \frac{a}{b} \right\Updownarrow$</td></tr><tr><td>混合括号</td><td>\left\langle \psi \right\</td><td></td><td>$\left\langle \psi \right</td><td>$</td></tr><tr><td>单左括号</td><td>\left\{ \frac{a}{b} \right .</td><td>$\left{ \frac{a}{b} \right .$</td></tr><tr><td>单右括号</td><td>\left. \frac{a}{b} \right }</td><td>$\left . \frac{a}{b} \right }$</td></tr></tbody></table><h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>可以使用\big, \Big, \bigg, \Bigg控制括号的大小，比如代码<strong>\Bigg</strong> ( <strong>\bigg</strong> [ <strong>\Big</strong> { <strong>\big</strong>\langle \left | | \frac{a}{b} | \right | <strong>\big</strong> \rangle \Big } <strong>\bigg</strong> ] <strong>\Bigg</strong> )显示$\Bigg ( \bigg [ \Big { \big\langle \left | | \frac{a}{b} | \right | \big \rangle \Big } \bigg ] \Bigg )$</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Windows-文字转语音"><a href="#Windows-文字转语音" class="headerlink" title="Windows 文字转语音"></a>Windows 文字转语音</h1><p>新建一个vbs脚本，内容如下：<br><figure class="highlight vbs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CreateObject</span>(<span class="string">"SAPI.SpVoice"</span>).Speak<span class="string">"hello world!"</span></span><br></pre></td></tr></table></figure></p><p>其中“hello world!”为语音内容。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;LaTeX括号总结&quot;&gt;&lt;a href=&quot;#LaTeX括号总结&quot; class=&quot;headerlink&quot; title=&quot;LaTeX括号总结&quot;&gt;&lt;/a&gt;LaTeX括号总结&lt;/h1&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;功能&lt;/th&gt;
-&lt;th&gt;语法&lt;/th&gt;
-
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux启动seafile客户端</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/Linux%E5%90%AF%E5%8A%A8seafile%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/Linux启动seafile客户端/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.222Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Linux启动seafile客户端"><a href="#Linux启动seafile客户端" class="headerlink" title="Linux启动seafile客户端"></a>Linux启动seafile客户端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seaf-cli sync -l a48f81b1-aa9f-4c7a-87c7-a8b1e4b74537 -s http://202.120.47.1:8000 -d /data/seafile/kuaipan -u dongbing900218@163.com -p dong71643612</span><br><span class="line">seaf-cli sync -l b7e61aea-39cc-4b5a-a3d6-32d017714e4d -s http://202.120.47.1:8000 -d /data/seafile/Pictures -u dongbing900218@163.com -p dong71643612</span><br><span class="line">seaf-cli start</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Linux启动seafile客户端&quot;&gt;&lt;a href=&quot;#Linux启动seafile客户端&quot; class=&quot;headerlink&quot; title=&quot;Linux启动seafile客户端&quot;&gt;&lt;/a&gt;Linux启动seafile客户端&lt;/h1&gt;&lt;figure class
+        &lt;h1 id=&quot;Windows-文字转语音&quot;&gt;&lt;a href=&quot;#Windows-文字转语音&quot; class=&quot;headerlink&quot; title=&quot;Windows 文字转语音&quot;&gt;&lt;/a&gt;Windows 文字转语音&lt;/h1&gt;&lt;p&gt;新建一个vbs脚本，内容如下：&lt;br&gt;&lt;figure
       
     
     </summary>
@@ -106,27 +80,6 @@
   </entry>
   
   <entry>
-    <title>Linux制作GIF图片</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/Linux%E5%88%B6%E4%BD%9CGIF%E5%9B%BE%E7%89%87/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/Linux制作GIF图片/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.178Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Linux制作GIF图片"><a href="#Linux制作GIF图片" class="headerlink" title="Linux制作GIF图片"></a>Linux制作GIF图片</h1><h2 id="从JPG图片序列创建GIF动图"><a href="#从JPG图片序列创建GIF动图" class="headerlink" title="从JPG图片序列创建GIF动图"></a>从JPG图片序列创建GIF动图</h2><p>先将所有 JPG 图片放到同一文件夹，再在终端中执行如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -delay 120 -loop 0 *.jpg linux.gif</span><br></pre></td></tr></table></figure></p><p>优化图片大小：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert linux.gif -fuzz 30% -layers Optimize output.gif</span><br></pre></td></tr></table></figure></p><p>附：批量裁剪图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image, ImageDraw, ImageFont</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">files = os.listdir(&quot;.&quot;)</span><br><span class="line"></span><br><span class="line">t = 0</span><br><span class="line">reg = (420,1,867,720)</span><br><span class="line"></span><br><span class="line">for f in files:</span><br><span class="line">    if &quot;jpg&quot; in f:</span><br><span class="line">        print(f)</span><br><span class="line">        im = Image.open(f)</span><br><span class="line">        im_size = im.size</span><br><span class="line">        region = im.crop(reg)</span><br><span class="line">        draw = ImageDraw.Draw(region)</span><br><span class="line">        ttfront = ImageFont.truetype(&quot;wqy-microhei.ttc&quot;,30)</span><br><span class="line">        t_str = &quot;%.3E&quot; % t</span><br><span class="line">        draw.text((25,633),&quot;t=&quot;+t_str+&quot;s&quot;,fill=(0,0,0),font=ttfront)</span><br><span class="line">        region.save(&quot;./crop/&quot;+f)</span><br><span class="line">        t += 0.000015</span><br></pre></td></tr></table></figure><p><a href="_v_attachments/20181220003953026_30521/crop.py">crop.py</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Linux制作GIF图片&quot;&gt;&lt;a href=&quot;#Linux制作GIF图片&quot; class=&quot;headerlink&quot; title=&quot;Linux制作GIF图片&quot;&gt;&lt;/a&gt;Linux制作GIF图片&lt;/h1&gt;&lt;h2 id=&quot;从JPG图片序列创建GIF动图&quot;&gt;&lt;a href=
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hexo搭建Blog</title>
     <link href="http://dongbing.me/2019/04/12/Linux/Hexo%E6%90%AD%E5%BB%BABlog/"/>
     <id>http://dongbing.me/2019/04/12/Linux/Hexo搭建Blog/</id>
@@ -140,6 +93,48 @@
       
       
         &lt;h1 id=&quot;Hexo搭建Blog&quot;&gt;&lt;a href=&quot;#Hexo搭建Blog&quot; class=&quot;headerlink&quot; title=&quot;Hexo搭建Blog&quot;&gt;&lt;/a&gt;Hexo搭建Blog&lt;/h1&gt;&lt;h2 id=&quot;安装前准备&quot;&gt;&lt;a href=&quot;#安装前准备&quot; class=&quot;he
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux启动seafile客户端</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/Linux%E5%90%AF%E5%8A%A8seafile%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/Linux启动seafile客户端/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2019-04-12T15:39:45.222Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Linux启动seafile客户端"><a href="#Linux启动seafile客户端" class="headerlink" title="Linux启动seafile客户端"></a>Linux启动seafile客户端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seaf-cli sync -l a48f81b1-aa9f-4c7a-87c7-a8b1e4b74537 -s http://202.120.47.1:8000 -d /data/seafile/kuaipan -u dongbing900218@163.com -p dong71643612</span><br><span class="line">seaf-cli sync -l b7e61aea-39cc-4b5a-a3d6-32d017714e4d -s http://202.120.47.1:8000 -d /data/seafile/Pictures -u dongbing900218@163.com -p dong71643612</span><br><span class="line">seaf-cli start</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Linux启动seafile客户端&quot;&gt;&lt;a href=&quot;#Linux启动seafile客户端&quot; class=&quot;headerlink&quot; title=&quot;Linux启动seafile客户端&quot;&gt;&lt;/a&gt;Linux启动seafile客户端&lt;/h1&gt;&lt;figure class
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux制作GIF图片</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/Linux%E5%88%B6%E4%BD%9CGIF%E5%9B%BE%E7%89%87/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/Linux制作GIF图片/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2019-04-12T15:39:45.178Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Linux制作GIF图片"><a href="#Linux制作GIF图片" class="headerlink" title="Linux制作GIF图片"></a>Linux制作GIF图片</h1><h2 id="从JPG图片序列创建GIF动图"><a href="#从JPG图片序列创建GIF动图" class="headerlink" title="从JPG图片序列创建GIF动图"></a>从JPG图片序列创建GIF动图</h2><p>先将所有 JPG 图片放到同一文件夹，再在终端中执行如下命令即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert -delay 120 -loop 0 *.jpg linux.gif</span><br></pre></td></tr></table></figure></p><p>优化图片大小：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">convert linux.gif -fuzz 30% -layers Optimize output.gif</span><br></pre></td></tr></table></figure></p><p>附：批量裁剪图片</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image, ImageDraw, ImageFont</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">files = os.listdir(&quot;.&quot;)</span><br><span class="line"></span><br><span class="line">t = 0</span><br><span class="line">reg = (420,1,867,720)</span><br><span class="line"></span><br><span class="line">for f in files:</span><br><span class="line">    if &quot;jpg&quot; in f:</span><br><span class="line">        print(f)</span><br><span class="line">        im = Image.open(f)</span><br><span class="line">        im_size = im.size</span><br><span class="line">        region = im.crop(reg)</span><br><span class="line">        draw = ImageDraw.Draw(region)</span><br><span class="line">        ttfront = ImageFont.truetype(&quot;wqy-microhei.ttc&quot;,30)</span><br><span class="line">        t_str = &quot;%.3E&quot; % t</span><br><span class="line">        draw.text((25,633),&quot;t=&quot;+t_str+&quot;s&quot;,fill=(0,0,0),font=ttfront)</span><br><span class="line">        region.save(&quot;./crop/&quot;+f)</span><br><span class="line">        t += 0.000015</span><br></pre></td></tr></table></figure><p><a href="_v_attachments/20181220003953026_30521/crop.py">crop.py</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Linux制作GIF图片&quot;&gt;&lt;a href=&quot;#Linux制作GIF图片&quot; class=&quot;headerlink&quot; title=&quot;Linux制作GIF图片&quot;&gt;&lt;/a&gt;Linux制作GIF图片&lt;/h1&gt;&lt;h2 id=&quot;从JPG图片序列创建GIF动图&quot;&gt;&lt;a href=
       
     
     </summary>
@@ -169,48 +164,6 @@
   </entry>
   
   <entry>
-    <title>Oh my zsh 配置</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/Oh%20my%20zsh%20%E9%85%8D%E7%BD%AE/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/Oh my zsh 配置/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.174Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Oh-my-zsh-配置"><a href="#Oh-my-zsh-配置" class="headerlink" title="Oh my zsh 配置"></a>Oh my zsh 配置</h1><h2 id="安装-powerline"><a href="#安装-powerline" class="headerlink" title="安装 powerline"></a>安装 powerline</h2><p>在终端里面输入：<br><code>pip install powerline-status</code><br>安装完成。</p><h2 id="安装-powerline-fonts"><a href="#安装-powerline-fonts" class="headerlink" title="安装 powerline fonts"></a>安装 powerline fonts</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># clone</span><br><span class="line">git clone https://github.com/powerline/fonts.git</span><br><span class="line"># install</span><br><span class="line">cd fonts</span><br><span class="line">./install.sh</span><br><span class="line"># clean-up a bit</span><br><span class="line">cd ..</span><br><span class="line">rm -rf fonts</span><br></pre></td></tr></table></figure><h2 id="安装-agnoster-主题"><a href="#安装-agnoster-主题" class="headerlink" title="安装 agnoster 主题"></a>安装 agnoster 主题</h2><ol><li>在终端中输入：<br><code>git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git</code></li><li>然后到目录里面运行install文件，就可以主题安装到~/.oh-my-zsh/themes目录下 。</li><li>切换到用户根目录，打开.zshrc文件，然后将ZSH_THEME后面的字段改为agnoster即可。像这样ZSH_THEME=”agnoster”。</li></ol><h2 id="安装-antigen"><a href="#安装-antigen" class="headerlink" title="安装 antigen"></a>安装 antigen</h2><ol><li>在终端中输入：<br><code>git clone https://github.com/zsh-users/antigen.git</code></li><li>修改家目录下面的.zshrc文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">source /path-to-antigen-clone/antigen.zsh</span><br><span class="line"># Load the oh-my-zsh&apos;s library.</span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"># Bundles from the default repo (robbyrussell&apos;s oh-my-zsh).</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle heroku</span><br><span class="line">antigen bundle pip</span><br><span class="line">antigen bundle lein</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line"># Syntax highlighting bundle.</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line"># Load the theme.</span><br><span class="line">antigen theme robbyrussell</span><br><span class="line"># Tell Antigen that you&apos;re done.</span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Oh-my-zsh-配置&quot;&gt;&lt;a href=&quot;#Oh-my-zsh-配置&quot; class=&quot;headerlink&quot; title=&quot;Oh my zsh 配置&quot;&gt;&lt;/a&gt;Oh my zsh 配置&lt;/h1&gt;&lt;h2 id=&quot;安装-powerline&quot;&gt;&lt;a href=&quot;#安
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ping of death攻击</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/Ping%20of%20death%E6%94%BB%E5%87%BB/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/Ping of death攻击/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.238Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Ping-of-death攻击"><a href="#Ping-of-death攻击" class="headerlink" title="Ping of death攻击"></a>Ping of death攻击</h1><h2 id="1-安装hping"><a href="#1-安装hping" class="headerlink" title="1. 安装hping"></a>1. 安装hping</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install hping3</span><br></pre></td></tr></table></figure><h2 id="2-Flood-ping-攻击"><a href="#2-Flood-ping-攻击" class="headerlink" title="2. Flood ping 攻击"></a>2. Flood ping 攻击</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hping3 192.168.13.1 -1 -d 66000 -c 1 --flood</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Ping-of-death攻击&quot;&gt;&lt;a href=&quot;#Ping-of-death攻击&quot; class=&quot;headerlink&quot; title=&quot;Ping of death攻击&quot;&gt;&lt;/a&gt;Ping of death攻击&lt;/h1&gt;&lt;h2 id=&quot;1-安装hping&quot;&gt;&lt;a
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>SSH端口转发情景模拟</title>
     <link href="http://dongbing.me/2019/04/12/Linux/SSH%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E6%83%85%E6%99%AF%E6%A8%A1%E6%8B%9F/"/>
     <id>http://dongbing.me/2019/04/12/Linux/SSH端口转发情景模拟/</id>
@@ -232,19 +185,19 @@
   </entry>
   
   <entry>
-    <title>Solve “Word too long” error</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/Solve%20%E2%80%9CWord%20too%20long%E2%80%9D%20error/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/Solve “Word too long” error/</id>
+    <title>Oh my zsh 配置</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/Oh%20my%20zsh%20%E9%85%8D%E7%BD%AE/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/Oh my zsh 配置/</id>
     <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.242Z</updated>
+    <updated>2019-04-12T15:39:45.174Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Solve-“Word-too-long”-error"><a href="#Solve-“Word-too-long”-error" class="headerlink" title="Solve “Word too long” error"></a>Solve “Word too long” error</h1><h2 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1:"></a>Step 1:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tcsh</span><br></pre></td></tr></table></figure><h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2:"></a>Step 2:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --config csh</span><br></pre></td></tr></table></figure><p>Select tcsh from the list of choices available.</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Oh-my-zsh-配置"><a href="#Oh-my-zsh-配置" class="headerlink" title="Oh my zsh 配置"></a>Oh my zsh 配置</h1><h2 id="安装-powerline"><a href="#安装-powerline" class="headerlink" title="安装 powerline"></a>安装 powerline</h2><p>在终端里面输入：<br><code>pip install powerline-status</code><br>安装完成。</p><h2 id="安装-powerline-fonts"><a href="#安装-powerline-fonts" class="headerlink" title="安装 powerline fonts"></a>安装 powerline fonts</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># clone</span><br><span class="line">git clone https://github.com/powerline/fonts.git</span><br><span class="line"># install</span><br><span class="line">cd fonts</span><br><span class="line">./install.sh</span><br><span class="line"># clean-up a bit</span><br><span class="line">cd ..</span><br><span class="line">rm -rf fonts</span><br></pre></td></tr></table></figure><h2 id="安装-agnoster-主题"><a href="#安装-agnoster-主题" class="headerlink" title="安装 agnoster 主题"></a>安装 agnoster 主题</h2><ol><li>在终端中输入：<br><code>git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git</code></li><li>然后到目录里面运行install文件，就可以主题安装到~/.oh-my-zsh/themes目录下 。</li><li>切换到用户根目录，打开.zshrc文件，然后将ZSH_THEME后面的字段改为agnoster即可。像这样ZSH_THEME=”agnoster”。</li></ol><h2 id="安装-antigen"><a href="#安装-antigen" class="headerlink" title="安装 antigen"></a>安装 antigen</h2><ol><li>在终端中输入：<br><code>git clone https://github.com/zsh-users/antigen.git</code></li><li>修改家目录下面的.zshrc文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">source /path-to-antigen-clone/antigen.zsh</span><br><span class="line"># Load the oh-my-zsh&apos;s library.</span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"># Bundles from the default repo (robbyrussell&apos;s oh-my-zsh).</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle heroku</span><br><span class="line">antigen bundle pip</span><br><span class="line">antigen bundle lein</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line"># Syntax highlighting bundle.</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line"># Load the theme.</span><br><span class="line">antigen theme robbyrussell</span><br><span class="line"># Tell Antigen that you&apos;re done.</span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;Solve-“Word-too-long”-error&quot;&gt;&lt;a href=&quot;#Solve-“Word-too-long”-error&quot; class=&quot;headerlink&quot; title=&quot;Solve “Word too long” error&quot;&gt;&lt;/a&gt;Solve
+        &lt;h1 id=&quot;Oh-my-zsh-配置&quot;&gt;&lt;a href=&quot;#Oh-my-zsh-配置&quot; class=&quot;headerlink&quot; title=&quot;Oh my zsh 配置&quot;&gt;&lt;/a&gt;Oh my zsh 配置&lt;/h1&gt;&lt;h2 id=&quot;安装-powerline&quot;&gt;&lt;a href=&quot;#安
       
     
     </summary>
@@ -274,61 +227,19 @@
   </entry>
   
   <entry>
-    <title>V2ray 服务器配置文件</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/V2ray%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/V2ray 服务器配置文件/</id>
+    <title>Ping of death攻击</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/Ping%20of%20death%E6%94%BB%E5%87%BB/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/Ping of death攻击/</id>
     <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.230Z</updated>
+    <updated>2019-04-12T15:39:45.238Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="V2ray-服务器配置文件"><a href="#V2ray-服务器配置文件" class="headerlink" title="V2ray 服务器配置文件"></a>V2ray 服务器配置文件</h1><h2 id="服务器配置文件路径"><a href="#服务器配置文件路径" class="headerlink" title="服务器配置文件路径"></a>服务器配置文件路径</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/v2ray/config.json</span><br></pre></td></tr></table></figure><h2 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log&quot; : &#123;</span><br><span class="line">    &quot;access&quot;: &quot;/var/log/v2ray/access.log&quot;,</span><br><span class="line">    &quot;error&quot;: &quot;/var/log/v2ray/error.log&quot;,</span><br><span class="line">    &quot;loglevel&quot;: &quot;warning&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;inbound&quot;: &#123;</span><br><span class="line">    &quot;port&quot;: 10010,</span><br><span class="line">    &quot;protocol&quot;: &quot;vmess&quot;,</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">      &quot;clients&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: &quot;8e540d28-3887-49a7-8fda-d7c7554dc8bc&quot;,</span><br><span class="line">          &quot;level&quot;: 1,</span><br><span class="line">          &quot;alterId&quot;: 64</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;inboundDetour&quot;:[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;port&quot;: 1111,</span><br><span class="line">    &quot;protocol&quot;: &quot;shadowsocks&quot;,</span><br><span class="line">    &quot;settings&quot;:&#123;</span><br><span class="line">      &quot;method&quot;: &quot;aes-256-cfb&quot;,</span><br><span class="line">      &quot;password&quot;: &quot;*#950LnPvS#*&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;outbound&quot;: &#123;</span><br><span class="line">    &quot;protocol&quot;: &quot;freedom&quot;,</span><br><span class="line">    &quot;settings&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;outboundDetour&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;protocol&quot;: &quot;blackhole&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;&#125;,</span><br><span class="line">      &quot;tag&quot;: &quot;blocked&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;routing&quot;: &#123;</span><br><span class="line">    &quot;strategy&quot;: &quot;rules&quot;,</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">      &quot;rules&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;type&quot;: &quot;field&quot;,</span><br><span class="line">          &quot;ip&quot;: [&quot;geoip:private&quot;],</span><br><span class="line">          &quot;outboundTag&quot;: &quot;blocked&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="Ping-of-death攻击"><a href="#Ping-of-death攻击" class="headerlink" title="Ping of death攻击"></a>Ping of death攻击</h1><h2 id="1-安装hping"><a href="#1-安装hping" class="headerlink" title="1. 安装hping"></a>1. 安装hping</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install hping3</span><br></pre></td></tr></table></figure><h2 id="2-Flood-ping-攻击"><a href="#2-Flood-ping-攻击" class="headerlink" title="2. Flood ping 攻击"></a>2. Flood ping 攻击</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hping3 192.168.13.1 -1 -d 66000 -c 1 --flood</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;V2ray-服务器配置文件&quot;&gt;&lt;a href=&quot;#V2ray-服务器配置文件&quot; class=&quot;headerlink&quot; title=&quot;V2ray 服务器配置文件&quot;&gt;&lt;/a&gt;V2ray 服务器配置文件&lt;/h1&gt;&lt;h2 id=&quot;服务器配置文件路径&quot;&gt;&lt;a href=&quot;#
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>dd备份恢复系统</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/dd%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/dd备份恢复系统/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.258Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="dd备份恢复系统"><a href="#dd备份恢复系统" class="headerlink" title="dd备份恢复系统"></a>dd备份恢复系统</h1><h2 id="1-备份"><a href="#1-备份" class="headerlink" title="1. 备份"></a>1. 备份</h2><p>用liveCD开机，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/sda1 of=sda1.img.bak bs=4M</span><br></pre></td></tr></table></figure></p><h2 id="2-还原"><a href="#2-还原" class="headerlink" title="2. 还原"></a>2. 还原</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dd if=sda1.img.bak of=/dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br><span class="line">resize2fs /dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br></pre></td></tr></table></figure><h2 id="3-dd中的压缩"><a href="#3-dd中的压缩" class="headerlink" title="3. dd中的压缩"></a>3. dd中的压缩</h2><p>dd对磁盘是极大的浪费，100G的硬盘只用1G，dd后的备份文件也是100G，这个可以通过压缩解决。</p><h3 id="备份："><a href="#备份：" class="headerlink" title="备份："></a>备份：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/sda1 | bzip2 &gt; sda1.img.bz2</span><br></pre></td></tr></table></figure><h3 id="远程备份："><a href="#远程备份：" class="headerlink" title="远程备份："></a>远程备份：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 9527 root@45.76.218.6 &quot;dd if=/dev/vda&quot; | bzip2 | dd of=vultr.img.bz2</span><br></pre></td></tr></table></figure><h3 id="还原："><a href="#还原：" class="headerlink" title="还原："></a>还原：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bzip2 -dc sda1.img.bz2 | dd of=/dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br><span class="line">resize2fs /dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br></pre></td></tr></table></figure><p><strong>注意如果是uefi启动，只对第二个分区e2fsck即可，第一个是EFI分区无需改动。</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;dd备份恢复系统&quot;&gt;&lt;a href=&quot;#dd备份恢复系统&quot; class=&quot;headerlink&quot; title=&quot;dd备份恢复系统&quot;&gt;&lt;/a&gt;dd备份恢复系统&lt;/h1&gt;&lt;h2 id=&quot;1-备份&quot;&gt;&lt;a href=&quot;#1-备份&quot; class=&quot;headerlink&quot; 
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>github绑定自己的域名</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/github%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/github绑定自己的域名/</id>
-    <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.150Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="github绑定自己的域名"><a href="#github绑定自己的域名" class="headerlink" title="github绑定自己的域名"></a>github绑定自己的域名</h1><h2 id="1-向你的-Github-Pages-仓库添加一个CNAME"><a href="#1-向你的-Github-Pages-仓库添加一个CNAME" class="headerlink" title="1. 向你的 Github Pages 仓库添加一个CNAME"></a>1. 向你的 Github Pages 仓库添加一个CNAME</h2><p>一定要<strong>大写</strong>文件其中只能包含一个顶级域名，像这样：example.com。<br>如果你是用hexo框架搭建博客并部署到Github Pages上，每次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; hexo g</span><br><span class="line">&gt; hexo d</span><br></pre></td></tr></table></figure></p><p>后会把你的博客所在目录下public文件夹里的东西都推到Github Pages仓库上，并且把CNAME文件覆盖掉，解决这个问题可以直接把CNAME文件添加到source文件夹里，这样每次推的时候就不用担心仓库里的CNAME文件被覆盖掉了。</p><h2 id="2-向你的-DNS-配置中添加3条记录"><a href="#2-向你的-DNS-配置中添加3条记录" class="headerlink" title="2. 向你的 DNS 配置中添加3条记录"></a>2. 向你的 DNS 配置中添加3条记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@          A             192.30.252.153</span><br><span class="line">@          A             192.30.252.154</span><br><span class="line">www      CNAME           username.github.io</span><br></pre></td></tr></table></figure><p>用你自己的Github用户名替换username推荐使用DNSPOD的服务，使用国外的DNS解析服务可能有被墙的风险。</p><h2 id="3-等待你的-DNS-配置生效"><a href="#3-等待你的-DNS-配置生效" class="headerlink" title="3. 等待你的 DNS 配置生效"></a>3. 等待你的 DNS 配置生效</h2><p>对DNS的配置不是立即生效的，过10分钟再去访问你的域名看看有没有配置成功。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;github绑定自己的域名&quot;&gt;&lt;a href=&quot;#github绑定自己的域名&quot; class=&quot;headerlink&quot; title=&quot;github绑定自己的域名&quot;&gt;&lt;/a&gt;github绑定自己的域名&lt;/h1&gt;&lt;h2 id=&quot;1-向你的-Github-Pages-仓库
+        &lt;h1 id=&quot;Ping-of-death攻击&quot;&gt;&lt;a href=&quot;#Ping-of-death攻击&quot; class=&quot;headerlink&quot; title=&quot;Ping of death攻击&quot;&gt;&lt;/a&gt;Ping of death攻击&lt;/h1&gt;&lt;h2 id=&quot;1-安装hping&quot;&gt;&lt;a
       
     
     </summary>
@@ -358,19 +269,19 @@
   </entry>
   
   <entry>
-    <title>搭建piwigo服务器</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/%E6%90%AD%E5%BB%BApiwigo%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/搭建piwigo服务器/</id>
+    <title>Solve “Word too long” error</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/Solve%20%E2%80%9CWord%20too%20long%E2%80%9D%20error/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/Solve “Word too long” error/</id>
     <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.190Z</updated>
+    <updated>2019-04-12T15:39:45.242Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="搭建piwigo服务器"><a href="#搭建piwigo服务器" class="headerlink" title="搭建piwigo服务器"></a>搭建piwigo服务器</h1><h2 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a>1. 下载安装包</h2><p>从官网下载最新的安装包：<code>http://piwigo.org/basics/downloads</code></p><h2 id="2-安装php环境"><a href="#2-安装php环境" class="headerlink" title="2. 安装php环境"></a>2. 安装php环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br><span class="line">mysql_secure_installation</span><br><span class="line">sudo apt-get install apache2</span><br><span class="line">sudo apt-get install php7.0</span><br><span class="line">sudo apt-get install phpmyadmin php-mbstring php-gettext</span><br><span class="line">sudo phpenmod mcrypt</span><br><span class="line">sudo phpenmod mbstring</span><br></pre></td></tr></table></figure><h2 id="3-配置piwigo"><a href="#3-配置piwigo" class="headerlink" title="3. 配置piwigo"></a>3. 配置piwigo</h2><p>将piwigo复制到<code>/var/www/html</code>文件夹下面，用户和组更改为：<code>www-data</code>。piwigo文件夹内<code>_data</code>的权限修改为777。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Solve-“Word-too-long”-error"><a href="#Solve-“Word-too-long”-error" class="headerlink" title="Solve “Word too long” error"></a>Solve “Word too long” error</h1><h2 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1:"></a>Step 1:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tcsh</span><br></pre></td></tr></table></figure><h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2:"></a>Step 2:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --config csh</span><br></pre></td></tr></table></figure><p>Select tcsh from the list of choices available.</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;搭建piwigo服务器&quot;&gt;&lt;a href=&quot;#搭建piwigo服务器&quot; class=&quot;headerlink&quot; title=&quot;搭建piwigo服务器&quot;&gt;&lt;/a&gt;搭建piwigo服务器&lt;/h1&gt;&lt;h2 id=&quot;1-下载安装包&quot;&gt;&lt;a href=&quot;#1-下载安装包&quot; c
+        &lt;h1 id=&quot;Solve-“Word-too-long”-error&quot;&gt;&lt;a href=&quot;#Solve-“Word-too-long”-error&quot; class=&quot;headerlink&quot; title=&quot;Solve “Word too long” error&quot;&gt;&lt;/a&gt;Solve
       
     
     </summary>
@@ -379,19 +290,19 @@
   </entry>
   
   <entry>
-    <title>编辑fstab自动挂载硬盘</title>
-    <link href="http://dongbing.me/2019/04/12/Linux/%E7%BC%96%E8%BE%91fstab%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"/>
-    <id>http://dongbing.me/2019/04/12/Linux/编辑fstab自动挂载硬盘/</id>
+    <title>V2ray 服务器配置文件</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/V2ray%20%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/V2ray 服务器配置文件/</id>
     <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.254Z</updated>
+    <updated>2019-04-12T15:39:45.230Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="编辑fstab自动挂载硬盘"><a href="#编辑fstab自动挂载硬盘" class="headerlink" title="编辑fstab自动挂载硬盘"></a>编辑fstab自动挂载硬盘</h1><h2 id="1-查看硬盘的UUID"><a href="#1-查看硬盘的UUID" class="headerlink" title="1. 查看硬盘的UUID"></a>1. 查看硬盘的UUID</h2><p>如果不使用UUID挂载，硬盘交换SATA口后可能会无法启动系统。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid -o list</span><br></pre></td></tr></table></figure></p><h2 id="2-编辑fstab"><a href="#2-编辑fstab" class="headerlink" title="2. 编辑fstab"></a>2. 编辑fstab</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab</span><br></pre></td></tr></table></figure><p>一个简单的<code>/etc/fstab</code>，使用内核名称标识磁盘如下所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># &lt;file system&gt;        &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;             &lt;dump&gt; &lt;pass&gt;</span><br><span class="line">tmpfs                  /tmp          tmpfs     nodev,nosuid          0      0</span><br><span class="line">/dev/sda1              /             ext4      defaults,noatime      0      1</span><br><span class="line">/dev/sda2              none          swap      defaults              0      0</span><br><span class="line">/dev/sda3              /home         ext4      defaults,noatime      0      2</span><br></pre></td></tr></table></figure></p><p>其中一行应该包含如下字段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;file system&gt;&lt;dir&gt;&lt;type&gt;&lt;options&gt;&lt;dump&gt;&lt;pass&gt;</span><br></pre></td></tr></table></figure></p><p><code>&lt;dump&gt;</code>dump工具通过它决定何时作备份。dump会检查其内容，并用数字来决定是否对这个文件系统进行备份。允许的数字是0和1。0表示忽略，1则进行备份。大部分的用户是没有安装dump的，对他们而言<code>&lt;dump&gt;</code>应设为0。</p><p><code>&lt;pass&gt;</code>fsck读取<code>&lt;pass&gt;</code>的数值来决定需要检查的文件系统的检查顺序。允许的数字是0,1和2。根目录应当获得最高的优先权1,其它所有需要被检查的设备设置为2。0表示设备不会被fsck所检查。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="V2ray-服务器配置文件"><a href="#V2ray-服务器配置文件" class="headerlink" title="V2ray 服务器配置文件"></a>V2ray 服务器配置文件</h1><h2 id="服务器配置文件路径"><a href="#服务器配置文件路径" class="headerlink" title="服务器配置文件路径"></a>服务器配置文件路径</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/v2ray/config.json</span><br></pre></td></tr></table></figure><h2 id="配置文件内容"><a href="#配置文件内容" class="headerlink" title="配置文件内容"></a>配置文件内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log&quot; : &#123;</span><br><span class="line">    &quot;access&quot;: &quot;/var/log/v2ray/access.log&quot;,</span><br><span class="line">    &quot;error&quot;: &quot;/var/log/v2ray/error.log&quot;,</span><br><span class="line">    &quot;loglevel&quot;: &quot;warning&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;inbound&quot;: &#123;</span><br><span class="line">    &quot;port&quot;: 10010,</span><br><span class="line">    &quot;protocol&quot;: &quot;vmess&quot;,</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">      &quot;clients&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: &quot;8e540d28-3887-49a7-8fda-d7c7554dc8bc&quot;,</span><br><span class="line">          &quot;level&quot;: 1,</span><br><span class="line">          &quot;alterId&quot;: 64</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;inboundDetour&quot;:[</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;port&quot;: 1111,</span><br><span class="line">    &quot;protocol&quot;: &quot;shadowsocks&quot;,</span><br><span class="line">    &quot;settings&quot;:&#123;</span><br><span class="line">      &quot;method&quot;: &quot;aes-256-cfb&quot;,</span><br><span class="line">      &quot;password&quot;: &quot;*#950LnPvS#*&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;outbound&quot;: &#123;</span><br><span class="line">    &quot;protocol&quot;: &quot;freedom&quot;,</span><br><span class="line">    &quot;settings&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;outboundDetour&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;protocol&quot;: &quot;blackhole&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;&#125;,</span><br><span class="line">      &quot;tag&quot;: &quot;blocked&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;routing&quot;: &#123;</span><br><span class="line">    &quot;strategy&quot;: &quot;rules&quot;,</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">      &quot;rules&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;type&quot;: &quot;field&quot;,</span><br><span class="line">          &quot;ip&quot;: [&quot;geoip:private&quot;],</span><br><span class="line">          &quot;outboundTag&quot;: &quot;blocked&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;编辑fstab自动挂载硬盘&quot;&gt;&lt;a href=&quot;#编辑fstab自动挂载硬盘&quot; class=&quot;headerlink&quot; title=&quot;编辑fstab自动挂载硬盘&quot;&gt;&lt;/a&gt;编辑fstab自动挂载硬盘&lt;/h1&gt;&lt;h2 id=&quot;1-查看硬盘的UUID&quot;&gt;&lt;a href=
+        &lt;h1 id=&quot;V2ray-服务器配置文件&quot;&gt;&lt;a href=&quot;#V2ray-服务器配置文件&quot; class=&quot;headerlink&quot; title=&quot;V2ray 服务器配置文件&quot;&gt;&lt;/a&gt;V2ray 服务器配置文件&lt;/h1&gt;&lt;h2 id=&quot;服务器配置文件路径&quot;&gt;&lt;a href=&quot;#
       
     
     </summary>
@@ -421,19 +332,103 @@
   </entry>
   
   <entry>
-    <title>HTML中插入数学公式</title>
-    <link href="http://dongbing.me/2019/04/12/Markdown%20&amp;%20HTML/HTML%E4%B8%AD%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
-    <id>http://dongbing.me/2019/04/12/Markdown &amp; HTML/HTML中插入数学公式/</id>
+    <title>github绑定自己的域名</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/github%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/github绑定自己的域名/</id>
     <published>2019-04-11T16:00:00.000Z</published>
-    <updated>2019-04-12T15:39:45.522Z</updated>
+    <updated>2019-04-12T15:39:45.150Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="HTML中插入数学公式"><a href="#HTML中插入数学公式" class="headerlink" title="HTML中插入数学公式"></a>HTML中插入数学公式</h1><p>如果在网页中需要插入数学公式，可以使用MathJax实现。在html文件前端插入如下代码即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p><blockquote><p>MathJax是一个开源的基于Ajax的数学公式显示的解决方案，其最大的优势在于可以以基于文本的方式显示页面中的数学公式。结合多种先进的Web技术，支持几乎所有的主流浏览器。MathJax可以在HTML页面中，为LaTeX数据和MathML数学公式提供了一个切实可行的的解决方案，支持Tex和LaTex、MathML、ASCIIMathML语言，拥有丰富的API接口。根据页面中定义的LaTeX数据，便可生成对应的数学公式。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="github绑定自己的域名"><a href="#github绑定自己的域名" class="headerlink" title="github绑定自己的域名"></a>github绑定自己的域名</h1><h2 id="1-向你的-Github-Pages-仓库添加一个CNAME"><a href="#1-向你的-Github-Pages-仓库添加一个CNAME" class="headerlink" title="1. 向你的 Github Pages 仓库添加一个CNAME"></a>1. 向你的 Github Pages 仓库添加一个CNAME</h2><p>一定要<strong>大写</strong>文件其中只能包含一个顶级域名，像这样：example.com。<br>如果你是用hexo框架搭建博客并部署到Github Pages上，每次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; hexo g</span><br><span class="line">&gt; hexo d</span><br></pre></td></tr></table></figure></p><p>后会把你的博客所在目录下public文件夹里的东西都推到Github Pages仓库上，并且把CNAME文件覆盖掉，解决这个问题可以直接把CNAME文件添加到source文件夹里，这样每次推的时候就不用担心仓库里的CNAME文件被覆盖掉了。</p><h2 id="2-向你的-DNS-配置中添加3条记录"><a href="#2-向你的-DNS-配置中添加3条记录" class="headerlink" title="2. 向你的 DNS 配置中添加3条记录"></a>2. 向你的 DNS 配置中添加3条记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@          A             192.30.252.153</span><br><span class="line">@          A             192.30.252.154</span><br><span class="line">www      CNAME           username.github.io</span><br></pre></td></tr></table></figure><p>用你自己的Github用户名替换username推荐使用DNSPOD的服务，使用国外的DNS解析服务可能有被墙的风险。</p><h2 id="3-等待你的-DNS-配置生效"><a href="#3-等待你的-DNS-配置生效" class="headerlink" title="3. 等待你的 DNS 配置生效"></a>3. 等待你的 DNS 配置生效</h2><p>对DNS的配置不是立即生效的，过10分钟再去访问你的域名看看有没有配置成功。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;HTML中插入数学公式&quot;&gt;&lt;a href=&quot;#HTML中插入数学公式&quot; class=&quot;headerlink&quot; title=&quot;HTML中插入数学公式&quot;&gt;&lt;/a&gt;HTML中插入数学公式&lt;/h1&gt;&lt;p&gt;如果在网页中需要插入数学公式，可以使用MathJax实现。在html
+        &lt;h1 id=&quot;github绑定自己的域名&quot;&gt;&lt;a href=&quot;#github绑定自己的域名&quot; class=&quot;headerlink&quot; title=&quot;github绑定自己的域名&quot;&gt;&lt;/a&gt;github绑定自己的域名&lt;/h1&gt;&lt;h2 id=&quot;1-向你的-Github-Pages-仓库
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搭建piwigo服务器</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/%E6%90%AD%E5%BB%BApiwigo%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/搭建piwigo服务器/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2019-04-12T15:39:45.190Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="搭建piwigo服务器"><a href="#搭建piwigo服务器" class="headerlink" title="搭建piwigo服务器"></a>搭建piwigo服务器</h1><h2 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a>1. 下载安装包</h2><p>从官网下载最新的安装包：<code>http://piwigo.org/basics/downloads</code></p><h2 id="2-安装php环境"><a href="#2-安装php环境" class="headerlink" title="2. 安装php环境"></a>2. 安装php环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br><span class="line">mysql_secure_installation</span><br><span class="line">sudo apt-get install apache2</span><br><span class="line">sudo apt-get install php7.0</span><br><span class="line">sudo apt-get install phpmyadmin php-mbstring php-gettext</span><br><span class="line">sudo phpenmod mcrypt</span><br><span class="line">sudo phpenmod mbstring</span><br></pre></td></tr></table></figure><h2 id="3-配置piwigo"><a href="#3-配置piwigo" class="headerlink" title="3. 配置piwigo"></a>3. 配置piwigo</h2><p>将piwigo复制到<code>/var/www/html</code>文件夹下面，用户和组更改为：<code>www-data</code>。piwigo文件夹内<code>_data</code>的权限修改为777。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;搭建piwigo服务器&quot;&gt;&lt;a href=&quot;#搭建piwigo服务器&quot; class=&quot;headerlink&quot; title=&quot;搭建piwigo服务器&quot;&gt;&lt;/a&gt;搭建piwigo服务器&lt;/h1&gt;&lt;h2 id=&quot;1-下载安装包&quot;&gt;&lt;a href=&quot;#1-下载安装包&quot; c
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>dd备份恢复系统</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/dd%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/dd备份恢复系统/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2019-04-12T15:39:45.258Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="dd备份恢复系统"><a href="#dd备份恢复系统" class="headerlink" title="dd备份恢复系统"></a>dd备份恢复系统</h1><h2 id="1-备份"><a href="#1-备份" class="headerlink" title="1. 备份"></a>1. 备份</h2><p>用liveCD开机，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/sda1 of=sda1.img.bak bs=4M</span><br></pre></td></tr></table></figure></p><h2 id="2-还原"><a href="#2-还原" class="headerlink" title="2. 还原"></a>2. 还原</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dd if=sda1.img.bak of=/dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br><span class="line">resize2fs /dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br></pre></td></tr></table></figure><h2 id="3-dd中的压缩"><a href="#3-dd中的压缩" class="headerlink" title="3. dd中的压缩"></a>3. dd中的压缩</h2><p>dd对磁盘是极大的浪费，100G的硬盘只用1G，dd后的备份文件也是100G，这个可以通过压缩解决。</p><h3 id="备份："><a href="#备份：" class="headerlink" title="备份："></a>备份：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/sda1 | bzip2 &gt; sda1.img.bz2</span><br></pre></td></tr></table></figure><h3 id="远程备份："><a href="#远程备份：" class="headerlink" title="远程备份："></a>远程备份：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 9527 root@45.76.218.6 &quot;dd if=/dev/vda&quot; | bzip2 | dd of=vultr.img.bz2</span><br></pre></td></tr></table></figure><h3 id="还原："><a href="#还原：" class="headerlink" title="还原："></a>还原：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bzip2 -dc sda1.img.bz2 | dd of=/dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br><span class="line">resize2fs /dev/sda1</span><br><span class="line">e2fsck -f /dev/sda1</span><br></pre></td></tr></table></figure><p><strong>注意如果是uefi启动，只对第二个分区e2fsck即可，第一个是EFI分区无需改动。</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;dd备份恢复系统&quot;&gt;&lt;a href=&quot;#dd备份恢复系统&quot; class=&quot;headerlink&quot; title=&quot;dd备份恢复系统&quot;&gt;&lt;/a&gt;dd备份恢复系统&lt;/h1&gt;&lt;h2 id=&quot;1-备份&quot;&gt;&lt;a href=&quot;#1-备份&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>编辑fstab自动挂载硬盘</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/%E7%BC%96%E8%BE%91fstab%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/编辑fstab自动挂载硬盘/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2019-04-12T15:39:45.254Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="编辑fstab自动挂载硬盘"><a href="#编辑fstab自动挂载硬盘" class="headerlink" title="编辑fstab自动挂载硬盘"></a>编辑fstab自动挂载硬盘</h1><h2 id="1-查看硬盘的UUID"><a href="#1-查看硬盘的UUID" class="headerlink" title="1. 查看硬盘的UUID"></a>1. 查看硬盘的UUID</h2><p>如果不使用UUID挂载，硬盘交换SATA口后可能会无法启动系统。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid -o list</span><br></pre></td></tr></table></figure></p><h2 id="2-编辑fstab"><a href="#2-编辑fstab" class="headerlink" title="2. 编辑fstab"></a>2. 编辑fstab</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab</span><br></pre></td></tr></table></figure><p>一个简单的<code>/etc/fstab</code>，使用内核名称标识磁盘如下所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># &lt;file system&gt;        &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;             &lt;dump&gt; &lt;pass&gt;</span><br><span class="line">tmpfs                  /tmp          tmpfs     nodev,nosuid          0      0</span><br><span class="line">/dev/sda1              /             ext4      defaults,noatime      0      1</span><br><span class="line">/dev/sda2              none          swap      defaults              0      0</span><br><span class="line">/dev/sda3              /home         ext4      defaults,noatime      0      2</span><br></pre></td></tr></table></figure></p><p>其中一行应该包含如下字段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;file system&gt;&lt;dir&gt;&lt;type&gt;&lt;options&gt;&lt;dump&gt;&lt;pass&gt;</span><br></pre></td></tr></table></figure></p><p><code>&lt;dump&gt;</code>dump工具通过它决定何时作备份。dump会检查其内容，并用数字来决定是否对这个文件系统进行备份。允许的数字是0和1。0表示忽略，1则进行备份。大部分的用户是没有安装dump的，对他们而言<code>&lt;dump&gt;</code>应设为0。</p><p><code>&lt;pass&gt;</code>fsck读取<code>&lt;pass&gt;</code>的数值来决定需要检查的文件系统的检查顺序。允许的数字是0,1和2。根目录应当获得最高的优先权1,其它所有需要被检查的设备设置为2。0表示设备不会被fsck所检查。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;编辑fstab自动挂载硬盘&quot;&gt;&lt;a href=&quot;#编辑fstab自动挂载硬盘&quot; class=&quot;headerlink&quot; title=&quot;编辑fstab自动挂载硬盘&quot;&gt;&lt;/a&gt;编辑fstab自动挂载硬盘&lt;/h1&gt;&lt;h2 id=&quot;1-查看硬盘的UUID&quot;&gt;&lt;a href=
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>配置Torque</title>
+    <link href="http://dongbing.me/2019/04/12/Linux/%E9%85%8D%E7%BD%AETorque/"/>
+    <id>http://dongbing.me/2019/04/12/Linux/配置Torque/</id>
+    <published>2019-04-11T16:00:00.000Z</published>
+    <updated>2019-04-12T15:39:45.194Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="配置Torque"><a href="#配置Torque" class="headerlink" title="配置Torque"></a>配置Torque</h1><h2 id="1-下载Torque源码"><a href="#1-下载Torque源码" class="headerlink" title="1. 下载Torque源码"></a>1. 下载Torque源码</h2><p>去Torque<a href="http://www.adaptivecomputing.com/support/download-center/torque-download/" target="_blank" rel="noopener">官网</a>下载最新版本的源码。</p><h2 id="2-编译与安装"><a href="#2-编译与安装" class="headerlink" title="2. 编译与安装"></a>2. 编译与安装</h2><p><strong><em>configure -&gt; make -&gt; make install</em></strong><br>Torque默认安装在/var/spool/torque文件夹下面。</p><p>Ubuntu可以直接使用apt安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install torque-server</span><br></pre></td></tr></table></figure><h2 id="3-配置Torque"><a href="#3-配置Torque" class="headerlink" title="3. 配置Torque"></a>3. 配置Torque</h2><h3 id="3-1-配置节点名称"><a href="#3-1-配置节点名称" class="headerlink" title="3.1. 配置节点名称"></a>3.1. 配置节点名称</h3><p>在/etc/hosts中加入管理节点和计算节点的IP：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure><p>增加一行：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 torqueserver calnode</span><br></pre></td></tr></table></figure><h3 id="3-2-配置pbs-server"><a href="#3-2-配置pbs-server" class="headerlink" title="3.2. 配置pbs_server"></a>3.2. 配置pbs_server</h3><p>初始化pbs_server：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbs_server -t create</span><br></pre></td></tr></table></figure><p>在Ubuntu中可以执行如下命令建立默认服务器和队列，并把自己列为管理员：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo bash /usr/share/doc/torque-common/torque.setup $USER torqueserver</span><br></pre></td></tr></table></figure><p>修改/var/spool/torque/server_name内容为：<code>torqueserver</code><br>修改/var/spool/torque/server_priv/nodes内容为：<code>calnode np=4</code><br>创建/var/spool/torque/mom_priv/config文件，内容为：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$pbsserver torqueserver</span><br><span class="line">$mom_host calnode</span><br></pre></td></tr></table></figure><p>启动trqauthd服务：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start trqauthd.service</span><br></pre></td></tr></table></figure><p>重启pbs_mom，pbs_sched，pbs_server。</p><h3 id="3-3-设置pbs-server并创建默认队列"><a href="#3-3-设置pbs-server并创建默认队列" class="headerlink" title="3.3. 设置pbs_server并创建默认队列"></a>3.3. 设置pbs_server并创建默认队列</h3><p>执行<code>qmgr</code>进入管理界面。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">set server scheduling=True</span><br><span class="line">set server default_queue=batch</span><br><span class="line">set server scheduler_iteration=600</span><br><span class="line">set server node_check_rate=150</span><br><span class="line">set server tcp_timeout=6</span><br><span class="line">set server mom_job_sync=True</span><br><span class="line">set server keep_completed=1</span><br><span class="line">set server allow_node_submit=True</span><br><span class="line"></span><br><span class="line">create queue batch</span><br><span class="line">set queue batch queue_type=Execution</span><br><span class="line">set queue batch resources_default.nodes=4</span><br><span class="line">set queue batch resources_default.walltime=480:00:00</span><br><span class="line">set queue batch enabled=True</span><br><span class="line">set queue batch started=True</span><br></pre></td></tr></table></figure><p>附Sugon服务器batch队列配置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set queue batch queue_type=Execution</span><br><span class="line">set queue batch Priority=1</span><br><span class="line">set queue batch set queue batch max_user_queuable=3</span><br><span class="line">set queue batch resources_max.cput=1920:00:00</span><br><span class="line">set queue batch resources_max.nodes=1:ppn=080</span><br><span class="line">set queue batch resources_max.walltime=240:00:00</span><br><span class="line">set queue batch resources_min.nodes=1:ppn=021</span><br><span class="line">set queue batch resources_default.nodes=1:ppn=8</span><br><span class="line">set queue batch resources_default.walltime=240:00:00</span><br><span class="line">set queue batch resources_assigned.nodect=1</span><br><span class="line">set queue batch max_user_run=2</span><br><span class="line">set queue batch enabled=True</span><br><span class="line">set queue batch started=True</span><br></pre></td></tr></table></figure><p>#4. 一个典型的Fluent PBS脚本<br>一个典型的Fluent PBS脚本如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">#PBS -N DONGBING_FLUENT</span><br><span class="line">#PBS -q tiny</span><br><span class="line">#PBS -l nodes=1:ppn=16</span><br><span class="line">#PBS -j oe</span><br><span class="line"></span><br><span class="line">cd $PBS_O_WORKDIR</span><br><span class="line">NP=`wc -l &lt; $PBS_NODEFILE`</span><br><span class="line"></span><br><span class="line">/public/software/ansys_inc_172/v172/fluent/bin/fluent 3ddp -ssh -g -pdefault -t$NP -cnf=$PBS_NODEFILE  -i  script.jou &gt; log.txt</span><br></pre></td></tr></table></figure><p>其中script.jou是Fluent的TUI命令，如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">rc channel_mixture_heat_species.cas</span><br><span class="line">rd channel_mixture_heat_species.dat</span><br><span class="line"></span><br><span class="line">!pwd</span><br><span class="line"></span><br><span class="line">file/auto-save/root-name ./results/channel_hole_transient</span><br><span class="line">file/auto-save/append-file-name-with/flow-time 8</span><br><span class="line"></span><br><span class="line">file/auto-save/data-frequency 1</span><br><span class="line">solve/set/time-step 0.000001</span><br><span class="line">solve/set/max-iterations-per-time-step 200</span><br><span class="line">solve/dual-time-iterate 100 200</span><br><span class="line"></span><br><span class="line">file/auto-save/data-frequency 10</span><br><span class="line">solve/set/time-step 0.00001</span><br><span class="line">solve/set/max-iterations-per-time-step 200</span><br><span class="line">solve/dual-time-iterate 1000 200</span><br><span class="line"></span><br><span class="line">file/auto-save/data-frequency 10</span><br><span class="line">solve/set/time-step 0.0001</span><br><span class="line">solve/set/max-iterations-per-time-step 200</span><br><span class="line">solve/dual-time-iterate 1000 200</span><br><span class="line"></span><br><span class="line">!sh `ls | grep cleanup`</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;配置Torque&quot;&gt;&lt;a href=&quot;#配置Torque&quot; class=&quot;headerlink&quot; title=&quot;配置Torque&quot;&gt;&lt;/a&gt;配置Torque&lt;/h1&gt;&lt;h2 id=&quot;1-下载Torque源码&quot;&gt;&lt;a href=&quot;#1-下载Torque源码&quot; cla
       
     
     </summary>
