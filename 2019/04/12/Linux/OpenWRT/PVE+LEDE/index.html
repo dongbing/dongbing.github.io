@@ -72,6 +72,8 @@
 <h2 id="安装PVE"><a href="#安装PVE" class="headerlink" title="安装PVE"></a>安装PVE</h2><p>将pve安装镜像写入U盘，使用uefi模式安装系统。</p>
 <h2 id="安装LEDE系统"><a href="#安装LEDE系统" class="headerlink" title="安装LEDE系统"></a>安装LEDE系统</h2><p>在PVE中新建VM，不用建立硬盘。<br>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./img2kvm openwrt.img 100 local-lvm</span><br></pre></td></tr></table></figure></p>
 <p>将LEDE镜像转为VM磁盘。</p>
+<p>也可以使用如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">qemu-img convert -f raw -O qcow2 &lt;firmware_name&gt; vm-100-disk-1.qcow2</span><br><span class="line">qm importdisk 100 vm-100-disk-1.qcow2 local-lvm</span><br></pre></td></tr></table></figure>
 <h2 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h2><p>在PVE中 <strong>Create -&gt; Linux Bridge</strong> 添加所有的网卡，管理接口作为LAN口，IP地址设置为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.2.254</span><br><span class="line">255.255.255.0</span><br><span class="line">192.168.2.1</span><br></pre></td></tr></table></figure></p>
 <p>作为WAN口的网卡IP地址不用设置。</p>
 <p>在虚拟机中添加网卡，Model均设置为VirtIO。</p>
@@ -330,6 +332,50 @@
 	
 		
 			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
 			
 		
 	
@@ -385,21 +431,13 @@
 			
 		
 	
-		
-			
-		
-	
-		
-			
-		
 	
 	
-	
-		<li class="prev"><a href="/2019/04/12/Linux/CentOS/CentOS 自动登陆和自动联网/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+		<li class="prev"><a href="/2019/04/12/Linux/Ubuntu/Ubuntu配置命令行发送邮件/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next"><a href="/2019/04/12/Linux/OpenWRT/OpenWRT安装Shadowsocks gfwlist/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next"><a href="/2019/04/12/Linux/Ubuntu/Ununtu Server安装ANSYS 17.2时的几点注意/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>

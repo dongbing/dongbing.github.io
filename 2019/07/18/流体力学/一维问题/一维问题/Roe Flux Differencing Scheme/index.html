@@ -1,0 +1,552 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Roe Flux Differencing Scheme - The Approximate Riemann Problem | My Note</title>
+  <meta name="author" content="Dong Bing">
+  
+  <meta name="description" content="Roe Flux Differencing Scheme - The Approximate Riemann Problemhttp://chimeracfd.com/programming/gryphon/fluxroe.html
+The Roe (1980) method utilizes a ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Roe Flux Differencing Scheme - The Approximate Riemann Problem"/>
+  <meta property="og:site_name" content="My Note"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="My Note" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">My Note</a><span class="split"></span><span class="title">Roe Flux Differencing Scheme - The Approximate Riemann Problem</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2019-07-18</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <h1 id="Roe-Flux-Differencing-Scheme-The-Approximate-Riemann-Problem"><a href="#Roe-Flux-Differencing-Scheme-The-Approximate-Riemann-Problem" class="headerlink" title="Roe Flux Differencing Scheme - The Approximate Riemann Problem"></a>Roe Flux Differencing Scheme - The Approximate Riemann Problem</h1><p><a href="http://chimeracfd.com/programming/gryphon/fluxroe.html" target="_blank" rel="noopener">http://chimeracfd.com/programming/gryphon/fluxroe.html</a></p>
+<p>The Roe (1980) method utilizes a somewhat different premise from the Van Leer flux splitting technique.  In the case of the Roe scheme, the solution is based on solving a localized Riemann problem to calculate the flux at a given face of the domain.  The  Riemann problem is outlined very well in chapter 5 of Laney (1998).  The basic premise of this problem is that changes in a flow can be transmitted only through entropy waves and acoustic waves, and only at some given speeds, which represent the eigenvalues of the governing non-linear equation system.  In one-dimension, there are three wave speeds, corresponding to the entropy wave at the speed the fluid is traveling, and acoustic waves representing the speed of sound relative to the fluid speed in the upstream and downstream directions (note that these waves may not actually be in the upstream and downstream directions respectively, but this is the sense in which they are defined).  Since the solution to the equation set changes only across one of these waves, the solution of the Euler equations at any point in space and time can be represented by a summation of the state to the extreme left or right of the space, plus (or minus) one or more of the state changes across these waves.  Again, see Laney (1998) for more details and some graphical interpretations for better understanding.</p>
+<p>Since the Euler equations are non-linear, the corresponding Riemann problem is non-linear as well.  This can be expensive to calculate in some cases, and Roe found that a properly selected approximate problem does the job just as well in most cases and saves on calculation complexity.  To start, it is useful to remember the vector of conservative variables given in an earlier section in eqn. (6).  It has been re-cast here in terms of total enthalpy to make it consistent with Roe’s scheme.</p>
+<p>$$<br>\boldsymbol{q}=\left[\begin{array}{c}{\rho} \ {\rho u} \ {\frac{1}{\gamma}\left(\rho h_{0}+\frac{\gamma-1}{2} \rho u^{2}\right)}\end{array}\right]<br>$$</p>
+<p>(33)</p>
+<p>The corresponding flux is given in eqn. (34), also in terms of total enthalpy.  These changes can be found simply by making some simple substitutions for total energy and pressure to eliminate them,</p>
+<p>$$<br>F(q)=\left[\begin{array}{c}{\rho u} \ {\frac{\gamma-1}{\gamma} \rho h_{0}+\frac{(\gamma+1)}{2 \gamma} \rho u^{2}} \ {\rho u h_{0}}\end{array}\right]<br>$$</p>
+<p>(34)</p>
+<p>The last section on the Van Leer method introduced the flux jacobian form for the full flux.  That was previously given in eqn. (28), and is again re-cast to show total enthalpy.</p>
+<p>$$<br>A(\boldsymbol{q})=\left[\begin{array}{ccc}{0} &amp; {1} &amp; {0} \ {\frac{(\gamma-3)}{2} u^{2}} &amp; {(3-\gamma) u} &amp; {\gamma-1} \ {\frac{1}{2}(\gamma-1) u^{3}-u h_{0}} &amp; {h_{0}-(\gamma-1) u^{2}} &amp; {\gamma u}\end{array}\right]<br>$$</p>
+<p>(35)</p>
+<p>These items given in eqns. (33) through (35) will be employed to develop the Roe scheme.</p>
+<p>If is also useful at this point to introduce the eigenvalue/eigenvector system that can be constructed for the Jacobian matrix A.  The matrix can be diagonalized as shown by eqn. (36).</p>
+<p>$$<br>A(\boldsymbol{q})=Q_{A} <em> \Lambda_{A} </em> Q_{A}^{-1}<br>$$</p>
+<p>(36)</p>
+<p>Here, the eigenvalue matrix is simply a diagonal matrix of the wavespeeds already discussed, and it can be written out as in eqn. (37).</p>
+<p>$$<br>\Lambda_{A}=\left[\begin{array}{ccc}{u} &amp; {0} &amp; {0} \ {0} &amp; {(u+a)} &amp; {0} \ {0} &amp; {0} &amp; {(u-a)}\end{array}\right]<br>$$</p>
+<p>(37)</p>
+<p>The corresponding eigenvector matrix and its inverse are given by eqns. (38) and (39).</p>
+<p>$$<br>Q_{A}=\left[\begin{array}{ccc}{1} &amp; {\frac{\rho}{2 a}} &amp; {-\frac{\rho}{2 a}} \ {u} &amp; {\frac{\rho}{2 a}(u+a)} &amp; {-\frac{\rho}{2 a}(u-a)} \ {\frac{u^{2}}{2}} &amp; {\frac{\rho}{2 a}\left(h_{0}+a u\right)} &amp; {-\frac{\rho}{2 a}\left(h_{0}-a u\right)}\end{array}\right]<br>$$</p>
+<p>(38)</p>
+<p>$$<br>Q_{A}^{-1}=\frac{(\gamma-1)}{\rho a}\left[\begin{array}{ccc}{\frac{\rho}{a}\left(\frac{a^{2}}{\gamma-1}-\frac{1}{2} u^{2}\right)} &amp; {\frac{\rho u}{a}} &amp; {-\frac{\rho}{a}} \ {\frac{1}{2} u^{2}-\frac{a u^{2}}{\gamma-1}} &amp; {\frac{a}{\gamma-1}-u} &amp; {1} \ {-\frac{1}{2} u^{2}-\frac{a u^{2}}{\gamma-1}} &amp; {\frac{a}{\gamma-1}+u} &amp; {-1}\end{array}\right]<br>$$</p>
+<p>(39)</p>
+<p>Since the calculation of either a conservative variable or the corresponding flux at an arbitrary point in space is a non-linear process in this derivation, the Roe scheme performs a type of linear interpolation to get the flux at some location.  The known states at the extreme left and right are used, and a secant line extended between the two to calculate the intermediate solution.  With the assumption of a secant line, the problem becomes first order homoegeneous.  This means that the Jacobian matrix A of the flux times the change in the conservative variable vector equals exactly the change in flux over the same space.  In general, there are an infinite number of possible approximate Jacobian matrices that satisfy first order homogeneity, but the Roe scheme reduces these possiblities to a unique solution by selecting an average conservative variable set instead of an average Jacobian matrix.  This can be clarified by looking at the resulting equation which must be satisfied by the Roe scheme in eqn. (40).</p>
+<p>$$<br>\vec{F}\left(\vec{q}<em>{\mathrm{RIGHT}}\right)-\vec{F}\left(\vec{q}</em>{\mathrm{LEFT}}\right)=A\left(\vec{q}<em>{R L}\right)\left[\vec{q}</em>{\mathrm{RIGHT}}-\vec{q}_{\mathrm{LEFT}}\right]<br>$$</p>
+<p>(40)</p>
+<p>Here, as stated the change in flux from right to left is simply the change in the conservative variable from right to left times the Jacobian matrix evaluated at some average state which must be uniquely defined by the left and right states.  By knowing the correct average for a given problem, one may find the solution variables or flux at any point in space and time.</p>
+<p>The key then is to generate a solution for the correct “averaged” solution variables given a set of left and right states.  One may define the change from right to left of any of the solution variables by the following:</p>
+<p>$$<br>\Delta \rho=\rho_{\mathrm{RIGHT}}-\rho_{\mathrm{LEFT}}<br>$$</p>
+<p>$$<br>\Delta u=u_{\mathrm{RIGHT}}-u_{\mathrm{LEFT}}<br>$$</p>
+<p>$$<br>\Delta h_{0}=h_{0, \mathrm{RIGHT}}-h_{0, \mathrm{LEFT}}<br>$$</p>
+<p>(41)</p>
+<p>This holds true of any conservative or non-conservative variable in this derivation.</p>
+<p>Using eqn. (40) with these “delta” values substituted into eqns. () and (), one finds that there is an exact solution for the two averaged variables of velocity and total enthalpy.  The solution after some algebra is given in eqn. (42) for velocity and eqn. (43) for total enthalpy</p>
+<p>$$<br>u_{R L}=\frac{\sqrt{\rho_{\mathrm{L}}} u_{L}+\sqrt{\rho_{\mathrm{R}}} u_{R}}{\sqrt{\rho_{\mathrm{R}}}+\sqrt{\rho_{\mathrm{L}}}}<br>$$<br>(42)</p>
+<p>$$<br>h_{0, \mathrm{RL}}=\frac{\sqrt{\rho_{\mathrm{L}}} h_{0, \mathrm{L}}+\sqrt{\rho_{\mathrm{R}}} h_{0, \mathrm{R}}}{\sqrt{\rho_{\mathrm{R}}}+\sqrt{\rho_{\mathrm{L}}}}<br>$$<br>(43)</p>
+<p>In order to calculate the rest of the averaged variables, it is necessary to arbitrarily pick a representation for averaged density.  Note that the selection will not affect the Jacobian matrix approximation given in eqn. (35).  The averaged velocity and total enthalpy already found completely defines it.  It is standard practice to use the averaged density as follows:</p>
+<p>$$<br>\rho_{R L}=\sqrt{\rho_{\mathrm{R}} \rho_{\mathrm{L}}}<br>$$<br>(44)</p>
+<p>Having this allows all the other “averaged” values to be calculated using the usual state relationships.  Most important is the Roe averaged speed of sound given by eqn. (45), as it will be used in the eigenvalue determination.</p>
+<p>$$<br>a_{\mathrm{RL}}=\sqrt{(\gamma-1)\left[h_{0, \mathrm{RL}}-\frac{1}{2} u_{\mathrm{RL}}^{2}\right]}<br>$$</p>
+<p>(45)</p>
+<p>This makes the eigenvalues of the approximated Jacobian matrix equal to eqn. (46), which are a function of eqns. (42) and (45).<br>entropy eigenvalue </p>
+<p>$$<br>\lambda_{1}=u_{R L}<br>$$</p>
+<p>$$<br>\lambda_{2}=u_{R L}+a_{R L}<br>$$</p>
+<p>$$<br>\lambda_{3}=u_{R L}-a_{R L}<br>$$</p>
+<p>(46)</p>
+<p>The final flux will also require calculation of the transformed variable set obtained by transforming the conservative variable vector using eqn. (38).  These variables are given here.</p>
+<p>$$<br>\Delta w_{1}=\Delta \rho-\frac{\Delta P}{a_{R L}^{2}}<br>$$</p>
+<p>$$<br>\Delta w_{2}=\Delta u+\frac{\Delta P}{\rho_{R L} a_{R L}}<br>$$</p>
+<p>$$<br>\Delta w_{3}=\Delta u-\frac{\Delta P}{\rho_{R L} a_{R L}}<br>$$</p>
+<p>(47)</p>
+<p>The eigenvectors corresponding to the three eigenvalues for the approximate matrix can just be taken from the matrix in eqn. (38) above.  They are given in eqn. (48).</p>
+<p>$$<br>\boldsymbol{e}<em>{R L, 1}=\left[\begin{array}{c}{1} \ {u</em>{\mathrm{RL}}} \ {\frac{1}{2} u_{\mathrm{RL}}^{2}}\end{array}\right] \quad e_{R L, 2}=\frac{\rho_{R L}}{2 a_{R L}}\left[\begin{array}{c}{1} \ {u_{R L}+a_{R L}} \ {h_{0, R L}+u_{R L} a_{R L}}\end{array}\right] \quad e_{R L, 3}=-\frac{\rho_{R L}}{2 a_{R L}}\left[\begin{array}{c}{1} \ {u_{R L}-a_{R L}} \ {h_{0, R L}-u_{R L} a_{R L}}\end{array}\right]<br>$$</p>
+<p>(48)</p>
+<p>Finally, all these relationships may be put together to calculate the flux at a cell boundary.  This corresponds to finding the flux for the Riemann problem at x=0.  This can be found either by taking the right hand flux and subtracting the flux changes from the right running waves, or taking the left hand flux and adding all the left running waves.  Alternately, both of these relations may be used by taking an average of the two.  The result is still the cell boundary flux, but the averaging process adds some measure of stability to the method.  This average relationship for the flux is given in eqn. (49).</p>
+<p>$$<br>F[q(x=0)]=\frac{1}{2}\left[F\left(u_{\mathrm{RIGHT}}\right)+F\left(u_{\mathrm{LEFT}}\right)\right]-\frac{1}{2} \sum_{k=1}^{3}\left[e_{R L, i} <em> \phi\left(\lambda_{i}\right) </em> \Delta w_{i}\right]<br>$$</p>
+<p>(49)</p>
+<p>The final matter that must be discussed concerns the function in eqn. (49) which is representative of the eigenvalues.  In the classic Roe scheme, the absolute value of the eigenvalues are used instead of the function, phi.  This action has a consequence, however.  The Roe method automatically admits discontinuities into its calculation (since the Riemann waves allow for instantaneous jumps or drops in value and a shock is one of the acoustic eigenvalues anyway).  However, the nature of the Roe technique outlined above has no way of distinguishing between normal compression shocks and expansion shocks.  In real, physical flows, compression shocks are a discontinuous phenomenon, but expansions are smooth increases, changing the flow in an isentropic way.  Using the Roe method in its classical form will give answers in which non-physical shocks occur for expansion processes as well.  This is purely a numerical construction, and should be eliminated fro mthe method.  This is done by employing the Harten (1983) correction.</p>
+<p>The correction of the Roe scheme by Harten (1983) has been subsequently implemented in a variety of ways.  The basic form for the correction, however, is given by eqn. (50).</p>
+<p>$$<br>\phi\left(\lambda_{i}\right)=\left{\begin{array}{cc}{\frac{\lambda_{i}^{2}+\delta^{2}}{2 \delta}} &amp; {\text { for }\left|\lambda_{i}\right|&lt;\delta} \ {\left|\lambda_{i}\right|} &amp; {\text { for }\left|\lambda_{i}\right| \geq \delta}\end{array}\right.<br>$$<br>(50)</p>
+<p>This equation defines the eigenvalue term in the flux calculation above.  This correction has the effect of smoothing out expansion shocks, which occur near sonic points (M = +1 or M = -1) because one of the eigenvalues goes to zero at these points.  In eqn. (50), delta is a small positive number.  As discussed by Laney (1998), the choosing of this parameter is somewhat arbitrary, and he recommends it be selected by trial and error.  In Gryphon, this free parameter was picked to be given by eqn. (51), which is just the velocity jump from right to left.</p>
+<p>$$<br>\delta=\Delta u<br>$$</p>
+<p>(51)</p>
+<p>Using this form seems to work well in Gryphon.  The idea behind Harten’s correction is that the function simply returns the eigenvalue in most cases.  Only in a region where the eigenvalue in question has become close to zero is it smoothed out.  Notice also that the choice from eqn. (51) modifies the eigenvalue only for an expansion shock.  In a compression shock with the flow moving right to left, the free parameter will be negative.  Since the absolute value of anything is always greater than a negative number, the compression shock remains unmodified.</p>
+<p>This completes the derivation of the Roe form of the flux at a given boundary face, which is needed to calculates the known n-level residual in the time integration schemes.  For an implicit scheme, however, the Jacobian of this residual is again necessary.  Calculating this Jacobian is straightforward if the derivatives of the flux with respect to the solution point (cell center) conservative variables are all known.  Calculating these quantities, particularly for the Roe scheme, represents the greatest challenge.  As given in eqn. (52), the derivative of any flux scalar with respect to any conservative cell variable can be found by using the chain rule for an exact differential.  Note that this is used in a scalar sense.  Because both the flux and the conservative variable set are vectors, eqn. (52) is true for any of the three flux scalars with respect to any of the three conservative variable scalars.</p>
+<p>$$<br>\frac{\partial F_{FACE}\left(q_{\mathrm{L}}, q_{\mathrm{R}}\right)}{\partial q_{j}}=\frac{\partial F_{FACE}}{\partial q_{\mathrm{LEFT}}} <em> \frac{\partial q_{\mathrm{LEFT}}}{\partial q_{j}}+\frac{\partial F_{FACE}}{\partial q_{\mathrm{RIGHT}}} </em> \frac{\partial q_{\mathrm{RIGHT}}}{\partial q_{j}}<br>$$<br>(52)</p>
+<p>Since both the left and the right derivatives are needed, they can be found by taking the respective derivative of eqn. (49).  In each case, either the left flux or the right flux drops out of the other derivative because it has no dependency on the conservative variable of the opposite sense.</p>
+<p>$$<br>\frac{\partial F_{R O E}}{\partial q_{\mathrm{LEFT}}}=\frac{1}{2} \frac{\partial F_{\mathrm{LEFT}}}{\partial q_{\mathrm{LEFT}}}+0-\frac{1}{2} \sum_{k=1}^{3} \frac{\partial}{\partial q_{\mathrm{LEFT}}}\left[e_{R L, i} <em> \phi\left(\lambda_{i}\right) </em> \Delta w_{i}\right]<br>$$</p>
+<p>(53)</p>
+<p>$$<br>\frac{\partial F_{R O E}}{\partial q_{\mathrm{RIGHT}}}=\frac{1}{2} \frac{\partial F_{\mathrm{RIGHT}}}{\partial q_{\mathrm{RIGHT}}}+0-\frac{1}{2} \sum_{k=1}^{3} \frac{\partial}{\partial q_{\mathrm{RIGHT}}}\left[e_{R L, i} <em> \phi\left(\lambda_{i}\right) </em> \Delta w_{i}\right]<br>$$</p>
+<p>(54)</p>
+<p>With these two relationships in eqns. (53) and (54), the first term in both cases represents the derivative of the full flux term.  The Jacobian of this vector has already been given in the previous section.  That Jacobian representation contains all the derivative of the flux scalars.  The second term is actually a summation of three terms and calculation of a derivative is required.  Conceptually, this is a simple process.  Using the definitions given in eqns. (46), (47) and (48), one needs only to use the chain rule on the final term and calculate the appropriate derivative of those quantities.  In most of the cases, one needs to calculate the derivative with respect to a Roe averaged variable, which, in turn, is a function of the left and right state variables, which are functions of the left and right conservative variables.  Implementing this requires the use of the chain rule and the product rule for differentiation many times over.  Conceptually, this is a straightforward process, but mathematically, the calculation is more than daunting.</p>
+<p>This compexity also clearly demonstrates why the implicit Roe solver in Gryphon is slower than the other options, since these complex calculations must be carried out for every cell, and then sent to a matrix solution algortihm.  This creates an overall algorithm with large amounts of overhead.</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2019/07/19/数据库/数据库\_vnote/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2019/06/11/MATLAB/MATLAB中从.fig文件导出数据/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2019 Dong Bing
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
